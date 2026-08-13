@@ -28,3 +28,23 @@ const history=[
  ['Draft V','NOT YET','A new draft number is earned by a conceptual phase shift, not by every correction or source update.']
 ];
 const timeline=document.getElementById('timeline');history.forEach(([when,state,text])=>{const x=document.createElement('div');x.className='time-item';x.innerHTML=`<time>${state}</time><h3>${when}</h3><p>${text}</p>`;timeline.appendChild(x)});
+
+const modelButton=document.getElementById('loadModelSource');
+const modelSource=document.getElementById('modelSource');
+async function loadModelSource(){
+  if(!modelButton||!modelSource)return;
+  modelButton.disabled=true;
+  modelButton.textContent='Loading…';
+  modelSource.textContent='Loading connected candidate source…';
+  try{
+    const res=await fetch('models/multi-agent-cr-v2.1.mmd',{cache:'no-store'});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const text=await res.text();
+    modelSource.textContent=text;
+    modelButton.textContent='Reload connected source';
+  }catch(err){
+    modelSource.textContent=`Could not load connected source in this environment.\n${err.message}`;
+    modelButton.textContent='Retry source load';
+  }finally{modelButton.disabled=false;}
+}
+modelButton?.addEventListener('click',loadModelSource);
