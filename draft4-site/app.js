@@ -1,0 +1,30 @@
+const views=[...document.querySelectorAll('.view')];
+const nav=[...document.querySelectorAll('.nav-btn')];
+function activate(id){views.forEach(v=>v.classList.toggle('active',v.id===id));nav.forEach(b=>b.classList.toggle('active',b.dataset.view===id));window.scrollTo({top:0,behavior:'smooth'});}
+nav.forEach(b=>b.addEventListener('click',()=>activate(b.dataset.view)));
+document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',()=>{const target=b.dataset.jump==='lineage'?'history':'read';activate(target);setTimeout(()=>document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth'}),100);}));
+
+const claimTypes={OBSERVED:'directly encountered or measured',REPORTED:'stated by a person or system',INFERENCE:'reasoned from evidence',HYPOTHESIS:'candidate explanation',BELIEF:'worldview / premise',UNRESOLVED:'not currently discriminated'};
+const legend=document.getElementById('claimLegend');
+Object.entries(claimTypes).forEach(([k,v])=>{const e=document.createElement('div');e.className='legend-item';e.innerHTML=`<strong>${k}</strong>${v}`;legend.appendChild(e)});
+
+const claims=[
+ {id:'fringe',title:'Fringe is an anomaly-sensitivity function',state:'REVISED',type:'INFERENCE',ceiling:'Supported as a faithful current reconstruction; historical expression included both intrapersonal sensitivity and socially allocated function.',evidence:'Draft III diagrams and dialogue; 2026 re-reading of role allocation and rotation.',counter:'Do not claim that Fringe was never a role. Do not make any one person or agent the permanent critic.',lineage:'Earlier v2 wording “not a person or role” was too strong. Current: internally carried, externally allocatable, never monopolized by identity.'},
+ {id:'receipts',title:'Receipts precede interpretation',state:'REFINED',type:'INFERENCE',ceiling:'Typed receipt admission is a 2026 refinement of prior ReflexGuard controls, not a wholly new invention.',evidence:'Prior Context Receipt / Evidence Eligibility / Reference Admission controls plus 2026 differentiation of inventory, context, runtime, effect and cost receipts.',counter:'A receipt is a trace, not truth. Missing receipt is not automatically a negative result.',lineage:'Prior control → typed receipt recombination → claim/probe-derived receipt requirements.'},
+ {id:'guild',title:'Guild may possess emergent causal powers',state:'UNRESOLVED',type:'HYPOTHESIS',ceiling:'Candidate Critical Realist interpretation only. Not validated as a mechanism.',evidence:'Observed relational effects involving roles, access, memory, attention, cost, language and norms across multi-agent work.',counter:'Guild is not an agent, not a super-mind, not a sovereign knower.',lineage:'Community/cohort structures → multi-agent 2026 retroduction → candidate Real-level relational mechanism.'},
+ {id:'verification',title:'Outcome match does not verify a mechanism',state:'CURRENT',type:'INFERENCE',ceiling:'A matched outcome may support a hypothesis only within preregistered discrimination conditions and alternative explanations.',evidence:'Open-system CR reasoning, probe design failures, and later discrimination logic.',counter:'ACTION_SUCCEEDED does not imply HYPOTHESIS_CONFIRMED.',lineage:'Draft III “Verified Hypothesis” → critique → bounded support / surviving hypothesis / NO_DISCRIMINATION.'},
+ {id:'sovereignty',title:'Cognitive sovereignty applies against the self',state:'CANDIDATE',type:'HYPOTHESIS',ceiling:'Normative-methodological candidate, not a discovery of unconscious motives.',evidence:'Forecast–Hypothesis delta creates a reflexive inspection surface for evidence change, stake, framing and possible MM.',counter:'Delta ≠ unconscious motive discovered. Introspection does not confer privileged truth access.',lineage:'Personal epistemology → Reflexive Fringe → 2026 formulation: no internal component gains sovereignty merely because it is mine.'}
+];
+const list=document.getElementById('claimList'),detail=document.getElementById('claimDetail');
+function renderClaim(c){document.querySelectorAll('.claim-button').forEach(x=>x.classList.toggle('active',x.dataset.id===c.id));detail.innerHTML=`<span class="tag ${c.state==='UNRESOLVED'?'open':c.state==='REVISED'?'revised':'held'}">${c.state}</span><h3>${c.title}</h3><div class="claim-meta"><span class="meta-pill">${c.type}</span><span class="meta-pill">CURRENT · 2026</span></div><dl><dt>Claim ceiling</dt><dd>${c.ceiling}</dd><dt>Evidence basis</dt><dd>${c.evidence}</dd><dt>Does not mean</dt><dd>${c.counter}</dd><dt>Lineage</dt><dd>${c.lineage}</dd></dl>`}
+claims.forEach((c,i)=>{const b=document.createElement('button');b.className='claim-button'+(i===0?' active':'');b.dataset.id=c.id;b.innerHTML=`<strong>${c.title}</strong><small>${c.type} · ${c.state}</small>`;b.onclick=()=>renderClaim(c);list.appendChild(b)});renderClaim(claims[0]);
+
+const history=[
+ ['Draft III','SOURCE PRESERVED','Historical epistemic object. Its stronger verification language remains visible rather than silently rewritten.'],
+ ['2026 · Re-reading','REOPENED','Diagrams, dialogue and prior artifacts are re-read as evidence; prose is not allowed to overrule the topology without examination.'],
+ ['2026 · Multi-Agent CR','REQUEST_PATCH','Individual cycles are retained while relational structures, asymmetry, probe contracts and anomaly sensitivity are made explicit.'],
+ ['2026 · ReflexGuard lineage','REFINED','Existing context/evidence controls are recognized as prior art; typed receipts and claim-derived admission rules are refinements.'],
+ ['Draft IV · Current','UNDER CONSTRUCTION','The website is the living epistemic state. Text views are projections of a versioned claim and lineage graph.'],
+ ['Draft V','NOT YET','A new draft number is earned by a conceptual phase shift, not by every correction or source update.']
+];
+const timeline=document.getElementById('timeline');history.forEach(([when,state,text])=>{const x=document.createElement('div');x.className='time-item';x.innerHTML=`<time>${state}</time><h3>${when}</h3><p>${text}</p>`;timeline.appendChild(x)});
