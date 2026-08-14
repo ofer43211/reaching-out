@@ -281,3 +281,56 @@
   display: none !important;
 }
 /* ROTEM-TRANSPARENT-FINAL-008 END */
+
+/* DRAFT-IV-MICRO-POLISH-009 START
+   Final visual micro-adjustment:
+   - slightly smaller institutional marks
+   - less air above brand stage
+   - smaller hero title
+*/
+
+/* Pull the whole brand stage upward. */
+.hero {
+  padding-top: clamp(28px, 3vw, 48px) !important;
+}
+
+.brand-marks {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+}
+
+/* About 10% smaller than current visual size. */
+.brand-mark-shalom {
+  width: clamp(270px, 22vw, 335px) !important;
+}
+
+.brand-mark-rotem {
+  width: clamp(350px, 24vw, 410px) !important;
+}
+
+/* "תמיד בבנייה." — still dominant, but no longer oversized. */
+.hero h1 {
+  font-size: clamp(3rem, 4.2vw, 4.4rem) !important;
+  line-height: 1.02 !important;
+}
+
+/* Mobile remains compact. */
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 24px !important;
+  }
+
+  .brand-mark-rotem {
+    width: min(84vw, 380px) !important;
+  }
+
+  .brand-mark-shalom {
+    width: min(78vw, 315px) !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 11vw, 3.4rem) !important;
+  }
+}
+
+/* DRAFT-IV-MICRO-POLISH-009 END */
