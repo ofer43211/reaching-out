@@ -1,68 +1,136 @@
-/* Draft IV — locked header/logo/navigation polish
+/* ==========================================================
+   Draft IV — Header / Logo / Navigation Lock
+
+   HIERARCHY:
+   LOGOS
+   META
+   NAV
+   DIVIDER
+   HERO
+
+   Desktop:
+   KELIM SHLUVIM = LEFT
+   ROTEM         = RIGHT
+
+   Alignment principle:
    WORDMARK <-> WORDMARK
    SAME PERCEIVED MASS
-   OPTICAL BASELINE, NOT IMAGE-BOX ALIGNMENT
-*/
+   OPTICAL ALIGNMENT, NOT IMAGE-BOX ALIGNMENT
+   ========================================================== */
+
+
+/* ---------- LOGO STAGE ---------- */
 
 .brand-marks {
-  width: min(100%, 980px) !important;
-  min-height: 290px;
-  margin: clamp(34px, 5vw, 70px) auto 8px !important;
-  padding: 0 22px 6px !important;
+  width: min(calc(100% - 48px), 980px) !important;
+  margin: clamp(38px, 5vw, 74px) auto 18px !important;
+  padding: 0 !important;
 
   display: grid !important;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  column-gap: clamp(90px, 10vw, 170px);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: "shalom rotem" !important;
+  column-gap: clamp(88px, 10vw, 170px) !important;
 
   align-items: end !important;
-  border: 0 !important;
+
   direction: ltr !important;
+  border: 0 !important;
+
+  overflow: visible !important;
 }
 
-/* Ignore old equal-box sizing. */
+
+/* Old shared image-box rules must not control alignment. */
+
 .brand-mark {
   display: block !important;
+
   height: auto !important;
   max-height: none !important;
   max-width: none !important;
-  object-fit: contain;
+
+  object-fit: contain !important;
+  object-position: center bottom !important;
+
+  background: transparent !important;
+}
+
+
+/* LEFT — כלים שלובים */
+
+.brand-mark-shalom {
+  grid-area: shalom !important;
+
+  justify-self: start !important;
+  align-self: end !important;
+
+  width: clamp(300px, 25vw, 370px) !important;
+
+  transform: none !important;
+  mix-blend-mode: normal !important;
+
   background: transparent !important;
   box-shadow: none !important;
 }
 
-/* Left: Kelim Shluvim.
-   Tight derived PNG means width now represents actual visible logo mass. */
-.brand-mark-shalom {
-  grid-column: 1;
-  justify-self: start;
 
-  width: clamp(300px, 25vw, 390px) !important;
+/* RIGHT — רותם */
 
-  /* Optical wordmark-baseline adjustment. */
-  transform: translateY(0);
-  transform-origin: center bottom;
-
-  mix-blend-mode: normal !important;
-}
-
-/* Right: RoTEM.
-   Two-line descriptor is NOT part of alignment baseline.
-   Nudge downward to align the main wordmark around the ו baseline. */
 .brand-mark-rotem {
-  grid-column: 2;
-  justify-self: end;
+  grid-area: rotem !important;
 
-  width: clamp(285px, 23vw, 345px) !important;
+  justify-self: end !important;
+  align-self: end !important;
 
-  transform: translateY(clamp(15px, 1.4vw, 22px));
-  transform-origin: center bottom;
+  width: clamp(290px, 23vw, 340px) !important;
+
+  /* No transform here:
+     prevents the descriptor from being pushed/cropped. */
+  transform: none !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
-/* Navigation now belongs BELOW the two brands. */
+
+/* ---------- META ROW ---------- */
+
+.draft4-meta-row {
+  width: min(calc(100% - 48px), 980px);
+
+  margin: 2px auto 14px;
+  padding: 8px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: clamp(14px, 2.2vw, 30px);
+
+  direction: ltr;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Normalize migrated header pieces without destroying
+   the language-toggle button styling. */
+
+.draft4-meta-row > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* ---------- NAV ROW ---------- */
+
 .draft4-nav-row {
-  width: min(100% - 40px, 980px);
-  margin: 0 auto clamp(32px, 4vw, 52px);
-  padding: 10px 0 22px;
+  width: min(calc(100% - 48px), 980px);
+
+  margin: 0 auto clamp(38px, 4vw, 54px);
+  padding: 8px 0 22px;
 
   display: flex;
   justify-content: center;
@@ -71,49 +139,87 @@
   border-bottom: 1px solid var(--line);
 }
 
+
 .draft4-main-nav {
   margin: 0 auto !important;
 }
 
-/* The old brand divider must not remain above the navigation. */
-.brand-marks::after,
-.brand-marks::before {
+
+/* The old divider no longer belongs to the logo row. */
+
+.brand-marks::before,
+.brand-marks::after {
   display: none !important;
 }
 
-/* Hero stays centered below the new header hierarchy. */
+
+/* Empty original header shell should not leave a blank band. */
+
+.draft4-vacated-header {
+  height: 0 !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  overflow: hidden !important;
+}
+
+
+/* ---------- HERO ---------- */
+
 .hero {
   margin-top: 0 !important;
 }
 
-/* MOBILE */
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
 @media (max-width: 720px) {
+
   .brand-marks {
-    min-height: 0;
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-    column-gap: 0;
+    width: calc(100% - 28px) !important;
+
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "rotem"
+      "shalom" !important;
+
+    row-gap: 24px !important;
+    column-gap: 0 !important;
+
     margin-top: 28px !important;
+
+    align-items: center !important;
   }
 
   .brand-mark-rotem {
-    grid-column: 1;
-    grid-row: 1;
-    justify-self: center;
+    justify-self: center !important;
     width: min(82vw, 330px) !important;
-    transform: none;
   }
 
   .brand-mark-shalom {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: center;
-    width: min(82vw, 340px) !important;
-    transform: none;
+    justify-self: center !important;
+    width: min(84vw, 350px) !important;
+  }
+
+  .draft4-meta-row {
+    width: calc(100% - 28px);
+
+    gap: 10px 16px;
+
+    margin-top: 4px;
+    margin-bottom: 10px;
   }
 
   .draft4-nav-row {
     width: calc(100% - 28px);
-    margin-bottom: 32px;
+
+    padding-bottom: 18px;
+    margin-bottom: 34px;
   }
 }
