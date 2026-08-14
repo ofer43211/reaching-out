@@ -250,3 +250,20 @@
 }
 
 /* ROTEM-INTERIM-005 END */
+
+/* ROTEM-BACKGROUND-FIXED-006 START
+   New owner-provided RoTEM artwork already contains its tagline
+   and has a corrected background.
+*/
+
+.brand-mark-rotem {
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+}
+
+/* Tagline is already baked into the selected artwork. */
+.brand-lockup-rotem .rotem-tagline {
+  display: none !important;
+}
+
+/* ROTEM-BACKGROUND-FIXED-006 END */
