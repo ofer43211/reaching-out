@@ -1,104 +1,131 @@
-/* Draft IV — balanced logo strip
-   Goal:
-   - Shalom mark pulls left
-   - RoTEM mark pulls right
-   - whole strip stays centered
-   - mobile stacks cleanly
-*/
+/* DRAFT IV — INTERIM INSTITUTIONAL LOCKUP
+   No licensed Fontbit fonts are embedded here.
+   Original logo assets remain preserved. */
 
-:root {
-  --draftiv-logo-strip-max: 920px;
-  --draftiv-logo-gap: clamp(32px, 7vw, 120px);
-  --draftiv-shalom-max: 240px;
-  --draftiv-rotem-max: 360px;
-}
+.brand-marks {
+  width: min(100%, 1120px);
+  margin: 0 auto 38px;
+  padding: 14px 0 30px;
 
-/* target the hero logo row without changing source content */
-.logo-polish-row,
-.hero-logos,
-.hero-logo-row,
-.logos-row,
-.brand-strip,
-div:has(img[src*="shalom-logo"]):has(img[src*="rotem-logo"]),
-section:has(img[src*="shalom-logo"]):has(img[src*="rotem-logo"]) {
-  width: min(100%, var(--draftiv-logo-strip-max));
-  margin-inline: auto;
-  margin-top: 1.25rem;
-  margin-bottom: 2.25rem;
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) minmax(220px, 1fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: center;
-  column-gap: var(--draftiv-logo-gap);
+
+  gap: clamp(70px, 11vw, 180px);
+
+  border-bottom: 1px solid var(--line);
+
+  /* Fixed visual left/right geometry regardless of UI language. */
+  direction: ltr;
 }
 
-/* left / right pull */
-img[src*="shalom-logo"] {
-  justify-self: end;
-  align-self: center;
-  display: block;
-  width: min(100%, var(--draftiv-shalom-max));
-  max-height: 160px;
-  height: auto;
-  object-fit: contain;
-  background: transparent !important;
-  box-shadow: none !important;
-}
+.brand-lockup {
+  width: min(100%, 410px);
+  min-height: 245px;
 
-img[src*="rotem-logo"] {
-  justify-self: start;
-  align-self: center;
-  display: block;
-  width: min(100%, var(--draftiv-rotem-max));
-  max-height: 170px;
-  height: auto;
-  object-fit: contain;
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* keep the content axis visually centered under the logos */
-main h1,
-.hero h1,
-section h1 {
-  text-align: center;
-  margin-inline: auto;
-}
-
-main p,
-.hero p,
-section p {
-  text-align: center;
-  margin-inline: auto;
-}
-
-main .cta-row,
-.hero .cta-row,
-section .cta-row,
-main .hero-actions,
-.hero .hero-actions,
-section .hero-actions {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+
+  min-width: 0;
 }
 
-/* mobile */
+.brand-lockup-rotem {
+  justify-self: start;
+}
+
+.brand-lockup-shalom {
+  justify-self: end;
+}
+
+.brand-mark {
+  display: block;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center;
+
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.brand-mark-rotem {
+  width: min(100%, 365px);
+
+  filter:
+    drop-shadow(0 2px 1px rgba(17, 91, 95, 0.16))
+    drop-shadow(0 8px 12px rgba(17, 91, 95, 0.18));
+}
+
+.brand-mark-shalom {
+  width: min(100%, 310px);
+
+  /*
+    Background has already been removed from the derived PNG.
+    No multiply blending: brand colours stay intact.
+  */
+  mix-blend-mode: normal;
+}
+
+/* Temporary treatment only.
+   Kanova / Empatica are NOT embedded or imitated as licensed fonts. */
+.rotem-tagline {
+  margin-top: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  direction: rtl;
+  text-align: center;
+
+  font-family:
+    system-ui,
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  font-size: clamp(20px, 1.7vw, 27px);
+  font-weight: 750;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+
+  color: #299ca3;
+
+  text-shadow:
+    0 1px 0 rgba(255,255,255,0.30),
+    0 4px 9px rgba(23,104,109,0.16);
+}
+
+.rotem-tagline span {
+  display: block;
+}
+
 @media (max-width: 760px) {
-  .logo-polish-row,
-  .hero-logos,
-  .hero-logo-row,
-  .logos-row,
-  .brand-strip,
-  div:has(img[src*="shalom-logo"]):has(img[src*="rotem-logo"]),
-  section:has(img[src*="shalom-logo"]):has(img[src*="rotem-logo"]) {
+  .brand-marks {
     grid-template-columns: 1fr;
-    row-gap: 18px;
-    column-gap: 0;
-    text-align: center;
+    gap: 28px;
+    direction: rtl;
   }
 
-  img[src*="shalom-logo"],
-  img[src*="rotem-logo"] {
+  .brand-lockup,
+  .brand-lockup-rotem,
+  .brand-lockup-shalom {
     justify-self: center;
-    width: min(100%, 260px);
-    max-height: none;
+    width: min(100%, 360px);
+    min-height: auto;
+  }
+
+  .brand-mark-rotem {
+    width: min(100%, 320px);
+  }
+
+  .brand-mark-shalom {
+    width: min(100%, 270px);
+  }
+
+  .rotem-tagline {
+    font-size: clamp(19px, 5vw, 24px);
   }
 }
