@@ -223,3 +223,30 @@
     margin-bottom: 34px;
   }
 }
+
+/* ROTEM-INTERIM-005 START
+   Owner-selected interim artwork.
+   Presentation only.
+*/
+
+.brand-mark-rotem {
+  width: clamp(390px, 27vw, 455px) !important;
+  height: auto !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: contain !important;
+  background: transparent !important;
+
+  /* Blend the warm raster canvas into Draft IV temporarily. */
+  mix-blend-mode: multiply !important;
+}
+
+@media (max-width: 720px) {
+  .brand-mark-rotem {
+    width: min(94vw, 440px) !important;
+  }
+}
+
+/* ROTEM-INTERIM-005 END */
