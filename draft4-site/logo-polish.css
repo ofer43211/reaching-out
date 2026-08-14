@@ -267,3 +267,17 @@
 }
 
 /* ROTEM-BACKGROUND-FIXED-006 END */
+
+/* ROTEM-TRANSPARENT-FINAL-008 START
+   True transparent PNG selected for RoTEM.
+   Preserve existing sizing/layout; remove raster blending workaround.
+*/
+.brand-mark-rotem {
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+}
+
+.brand-lockup-rotem .rotem-tagline {
+  display: none !important;
+}
+/* ROTEM-TRANSPARENT-FINAL-008 END */
