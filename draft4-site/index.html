@@ -1,57 +1,64 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="ReachingOut Draft IV — a living, versioned critical realist knowledge site." />
   <title>ReachingOut — Draft IV</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="model-source.css" />
 </head>
 <body>
   <header class="topbar">
     <div class="brand">ReachingOut <span>Draft IV</span></div>
-    <nav aria-label="Primary">
-      <button class="nav-btn active" data-view="read">Read</button>
-      <button class="nav-btn" data-view="model">Model</button>
-      <button class="nav-btn" data-view="evidence">Evidence</button>
-      <button class="nav-btn" data-view="history">History</button>
+    <nav aria-label="Primary" data-i18n-aria="primaryNav">
+      <button class="nav-btn active" data-view="read" data-i18n="navRead">Read</button>
+      <button class="nav-btn" data-view="model" data-i18n="navModel">Model</button>
+      <button class="nav-btn" data-view="evidence" data-i18n="navEvidence">Evidence</button>
+      <button class="nav-btn" data-view="history" data-i18n="navHistory">History</button>
     </nav>
-    <div class="status-dot">CURRENT · 2026</div>
+    <div class="topbar-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button class="lang-btn" data-lang="he" lang="he">עברית</button>
+        <button class="lang-btn" data-lang="en" lang="en">English</button>
+      </div>
+      <div class="status-dot" data-i18n="statusCurrent">CURRENT · 2026</div>
+    </div>
   </header>
 
   <main>
     <section class="hero">
-      <p class="eyebrow">CRITICAL REALIST EPISTEMOLOGY · LIVING KNOWLEDGE</p>
-      <h1>Always under construction.</h1>
-      <p class="lead">Knowledge is not a final node. It is the current state of an unfinished epistemic trajectory: fallible hypotheses, deliberate encounters with reality, anomaly, revision, and another turn.</p>
+      <p class="eyebrow" data-i18n="heroEyebrow">CRITICAL REALIST EPISTEMOLOGY · LIVING KNOWLEDGE</p>
+      <h1 data-i18n="heroTitle">Always under construction.</h1>
+      <p class="lead" data-i18n="heroLead">Knowledge is not a final node. It is the current state of an unfinished epistemic trajectory: fallible hypotheses, deliberate encounters with reality, anomaly, revision, and another turn.</p>
       <div class="hero-actions">
-        <button class="primary" data-jump="current">View current state</button>
-        <button class="secondary" data-jump="lineage">Open revision lineage</button>
+        <button class="primary" data-jump="current" data-i18n="viewCurrent">View current state</button>
+        <button class="secondary" data-jump="lineage" data-i18n="openLineage">Open revision lineage</button>
       </div>
-      <p class="claim-ceiling">Nothing is hidden to protect the theory. Nothing is promoted beyond the evidence. Nothing is excluded merely because it contradicts us.</p>
+      <p class="claim-ceiling" data-i18n="heroCeiling">Nothing is hidden to protect the theory. Nothing is promoted beyond the evidence. Nothing is excluded merely because it contradicts us.</p>
     </section>
 
     <section id="read" class="view active">
       <div class="section-head" id="current">
-        <p class="eyebrow">CURRENT EPISTEMIC STATE</p>
-        <h2>Draft IV is a state, not a monument.</h2>
-        <p>Draft III is preserved. Draft IV records what is currently held, revised, reopened, or unresolved. Draft V arrives when a conceptual phase shift earns a new draft number.</p>
+        <p class="eyebrow" data-i18n="currentEyebrow">CURRENT EPISTEMIC STATE</p>
+        <h2 data-i18n="currentTitle">Draft IV is a state, not a monument.</h2>
+        <p data-i18n="currentLead">Draft III is preserved. Draft IV records what is currently held, revised, reopened, or unresolved. Draft V arrives when a conceptual phase shift earns a new draft number.</p>
       </div>
       <div class="cards three">
-        <article class="card"><span class="tag held">STILL HELD</span><h3>Fallibility</h3><p>Our best account remains corrigible and revisable in contact with new evidence and new occurrences.</p></article>
-        <article class="card"><span class="tag revised">REVISED</span><h3>Verified Hypothesis</h3><p>Outcome agreement does not by itself verify a causal mechanism. Support is bounded by the probe and its discrimination power.</p></article>
-        <article class="card"><span class="tag open">UNRESOLVED</span><h3>Guild as Real-level mechanism</h3><p>The guild is a candidate relational structure with causal powers. It is not a knower and is not yet treated as a validated mechanism.</p></article>
+        <article class="card"><span class="tag held" data-i18n="stillHeld">STILL HELD</span><h3 data-i18n="fallibilityTitle">Fallibility</h3><p data-i18n="fallibilityBody">Our best account remains corrigible and revisable in contact with new evidence and new occurrences.</p></article>
+        <article class="card"><span class="tag revised" data-i18n="revised">REVISED</span><h3 data-i18n="verifiedTitle">Verified Hypothesis</h3><p data-i18n="verifiedBody">Outcome agreement does not by itself verify a causal mechanism. Support is bounded by the probe and its discrimination power.</p></article>
+        <article class="card"><span class="tag open" data-i18n="unresolved">UNRESOLVED</span><h3 data-i18n="guildTitle">Guild as Real-level mechanism</h3><p data-i18n="guildBody">The guild is a candidate relational structure with causal powers. It is not a knower and is not yet treated as a validated mechanism.</p></article>
       </div>
 
       <div class="split">
         <article class="panel">
-          <p class="eyebrow">COGNITIVE SOVEREIGNTY</p>
-          <h3>Apcha begins at home.</h3>
-          <p>No thought receives epistemic sovereignty merely because it is mine. The gap between Forecast and Hypothesis is a reflexive inspection surface: what evidence entered, what stake shifted, what story became attractive, and what possible motive may have acted?</p>
+          <p class="eyebrow" data-i18n="sovereigntyEyebrow">COGNITIVE SOVEREIGNTY</p>
+          <h3 data-i18n="sovereigntyTitle">Apcha begins at home.</h3>
+          <p data-i18n="sovereigntyBody">No thought receives epistemic sovereignty merely because it is mine. The gap between Forecast and Hypothesis is a reflexive inspection surface: what evidence entered, what stake shifted, what story became attractive, and what possible motive may have acted?</p>
         </article>
         <article class="panel dark">
-          <p class="eyebrow">CLAIM BOUNDARY</p>
-          <pre>FORECAST → RATIONALISATION → HYPOTHESIS
+          <p class="eyebrow" data-i18n="claimBoundary">CLAIM BOUNDARY</p>
+          <pre data-i18n="forecastPre">FORECAST → RATIONALISATION → HYPOTHESIS
               ↑
        REFLEXIVE FRINGE
 
@@ -62,88 +69,89 @@ Delta = trace requiring retroduction</pre>
     </section>
 
     <section id="model" class="view">
-      <div class="section-head"><p class="eyebrow">MULTI-AGENT CR · V2.1 CANDIDATE</p><h2>Three dimensions. Distinct agents. No sovereign knower.</h2><p>The diagram below is a candidate source view. It is connected to the site as an explicit model artifact, not silently promoted to canon.</p></div>
+      <div class="section-head"><p class="eyebrow" data-i18n="modelEyebrow">MULTI-AGENT CR · V2.1 CANDIDATE</p><h2 data-i18n="modelTitle">Three dimensions. Distinct agents. No sovereign knower.</h2><p data-i18n="modelLead">The diagram below is a candidate source view. It is connected to the site as an explicit model artifact, not silently promoted to canon.</p></div>
       <div class="model-status-row">
-        <span class="tag open">NOT VALIDATED</span>
-        <span class="tag revised">NOT CANON</span>
-        <span class="meta-pill">OWNER-SUPPLIED CANDIDATE SOURCE</span>
+        <span class="tag open" data-i18n="notValidated">NOT VALIDATED</span>
+        <span class="tag revised" data-i18n="notCanon">NOT CANON</span>
+        <span class="meta-pill" data-i18n="ownerSource">OWNER-SUPPLIED CANDIDATE SOURCE</span>
       </div>
       <div class="model-source-shell">
         <div class="model-source-head">
           <div>
-            <strong>Multi-Agent Critical Realist Epistemology — V2.1 Candidate</strong>
-            <p>Fringe is an anomaly-sensitivity function: internally carried, externally allocatable, never monopolized by identity. Guild remains a candidate Real-level structure. Typed Receipt Admission remains a candidate gate.</p>
+            <strong data-i18n="sourceTitle">Multi-Agent Critical Realist Epistemology — V2.1 Candidate</strong>
+            <p data-i18n="sourceBody">Fringe is an anomaly-sensitivity function: internally carried, externally allocatable, never monopolized by identity. Guild remains a candidate Real-level structure. Typed Receipt Admission remains a candidate gate.</p>
+            <p class="source-provenance" data-i18n="sourceProvenance">Original source artifact (English) is preserved unchanged. The Hebrew view is a separate translation/projection and does not replace the source.</p>
           </div>
           <div class="source-actions">
-            <button class="secondary" id="loadModelSource">Load connected source</button>
-            <a class="source-link" href="models/multi-agent-cr-v2.1.mmd" target="_blank" rel="noopener">Open .mmd source</a>
+            <button class="secondary" id="loadModelSource" data-i18n="loadSource">Load connected source</button>
+            <a class="source-link" href="models/multi-agent-cr-v2.1.mmd" target="_blank" rel="noopener" data-i18n="openSource">Open original .mmd source</a>
           </div>
         </div>
-        <pre id="modelSource" class="model-source" aria-live="polite">Connected source not loaded yet.</pre>
+        <pre id="modelSource" class="model-source" aria-live="polite" dir="ltr" lang="en">Connected original source not loaded yet.</pre>
       </div>
 
       <div class="cr-grid">
         <div class="dimension actual">
-          <h3>ACTUAL</h3><p class="small">Events / occurrences / interventions</p>
-          <div class="node">Shared Actual World</div>
+          <h3 data-i18n="actualTitle">ACTUAL</h3><p class="small" data-i18n="actualSubtitle">Events / occurrences / interventions</p>
+          <div class="node" data-i18n="sharedWorld">Shared Actual World</div>
           <div class="arrow">↓</div>
-          <div class="node">Probe / Intervention</div>
-          <div class="arrow">↺ consequences become new occurrences</div>
+          <div class="node" data-i18n="probeIntervention">Probe / Intervention</div>
+          <div class="arrow" data-i18n="consequences">↺ consequences become new occurrences</div>
         </div>
         <div class="dimension real">
-          <h3>REAL</h3><p class="small">Structures / mechanisms / powers</p>
-          <div class="node accent">Guild as relational structure <span class="mini">CANDIDATE</span></div>
-          <div class="mechanisms">Visibility · Access · Costs · Roles · Artifacts/Memory · Norms/Language</div>
-          <div class="node fringe"><strong>FRINGE</strong><br/>anomaly-sensitivity function<br/><span>internally carried · externally allocatable · never monopolized by identity</span></div>
+          <h3 data-i18n="realTitle">REAL</h3><p class="small" data-i18n="realSubtitle">Structures / mechanisms / powers</p>
+          <div class="node accent"><span data-i18n="guildNode">Guild as relational structure</span> <span class="mini" data-i18n="candidate">CANDIDATE</span></div>
+          <div class="mechanisms" data-i18n="mechanisms">Visibility · Access · Costs · Roles · Artifacts/Memory · Norms/Language</div>
+          <div class="node fringe"><strong data-i18n="fringeTitle">FRINGE</strong><br/><span class="fringe-function" data-i18n="fringeFunction">anomaly-sensitivity function</span><br/><span data-i18n="fringeRule">internally carried · externally allocatable · never monopolized by identity</span></div>
           <div class="contracts">
-            <div><strong>Probe Contract</strong><br/>purpose · expected outcomes · success/failure conditions · risks · costs · responsibilities · rollback</div>
-            <div><strong>Typed Receipt Admission</strong><br/>Inventory · Context/Conditioning · Runtime · Effect/Outcome · Cost/Pressure</div>
+            <div><strong data-i18n="probeContract">Probe Contract</strong><br/><span data-i18n="probeContractBody">purpose · expected outcomes · success/failure conditions · risks · costs · responsibilities · rollback</span></div>
+            <div><strong data-i18n="typedAdmission">Typed Receipt Admission</strong><br/><span data-i18n="typedAdmissionBody">Inventory · Context/Conditioning · Runtime · Effect/Outcome · Cost/Pressure</span></div>
           </div>
         </div>
         <div class="dimension empiric">
-          <h3>EMPIRIC</h3><p class="small">Experience / perspective / reasoning</p>
-          <div class="agent"><strong>Agent 1</strong><span>PFE → Forecast → Rationalisation → Hypothesis → Causality → Probe Intent</span></div>
-          <div class="agent"><strong>Agent 2</strong><span>PFE → Forecast → Rationalisation → Hypothesis → Causality → Probe Intent</span></div>
-          <div class="node reflexive">Role ≠ Identity · structural asymmetry ≠ epistemic privilege</div>
+          <h3 data-i18n="empiricTitle">EMPIRIC</h3><p class="small" data-i18n="empiricSubtitle">Experience / perspective / reasoning</p>
+          <div class="agent"><strong data-i18n="agent1">Agent 1</strong><span data-i18n="agentCycle">PFE → Forecast → Rationalisation → Hypothesis → Causality → Probe Intent</span></div>
+          <div class="agent"><strong data-i18n="agent2">Agent 2</strong><span data-i18n="agentCycle">PFE → Forecast → Rationalisation → Hypothesis → Causality → Probe Intent</span></div>
+          <div class="node reflexive" data-i18n="roleIdentity">Role ≠ Identity · structural asymmetry ≠ epistemic privilege</div>
         </div>
       </div>
-      <p class="model-note">Guild ≠ Agent. Artifact ≠ Knower. Consensus ≠ Truth. Receipt ≠ Reality. Action succeeded ≠ Hypothesis confirmed. No receipt ≠ negative result.</p>
+      <p class="model-note" data-i18n="modelNote">Guild ≠ Agent. Artifact ≠ Knower. Consensus ≠ Truth. Receipt ≠ Reality. Action succeeded ≠ Hypothesis confirmed. No receipt ≠ negative result.</p>
     </section>
 
     <section id="evidence" class="view">
-      <div class="section-head"><p class="eyebrow">CLAIMS AS OBJECTS</p><h2>Every consequential claim carries its lineage.</h2><p>The site separates what happened from what was reported, inferred, hypothesised, believed, or left unresolved.</p></div>
+      <div class="section-head"><p class="eyebrow" data-i18n="evidenceEyebrow">CLAIMS AS OBJECTS</p><h2 data-i18n="evidenceTitle">Every consequential claim carries its lineage.</h2><p data-i18n="evidenceLead">The site separates what happened from what was reported, inferred, hypothesised, believed, or left unresolved.</p></div>
       <div class="legend-grid" id="claimLegend"></div>
       <div class="evidence-layout">
         <aside class="claim-list" id="claimList"></aside>
         <article class="claim-detail" id="claimDetail"></article>
       </div>
       <div class="receipt-strip">
-        <strong>Typed receipts before interpretation:</strong>
-        <span>Inventory</span><span>Context / Conditioning</span><span>Runtime / Instrumentation</span><span>Effect / Outcome</span><span>Cost / Pressure</span>
+        <strong data-i18n="receiptsBefore">Typed receipts before interpretation:</strong>
+        <span data-i18n="receiptInventory">Inventory</span><span data-i18n="receiptContext">Context / Conditioning</span><span data-i18n="receiptRuntime">Runtime / Instrumentation</span><span data-i18n="receiptEffect">Effect / Outcome</span><span data-i18n="receiptCost">Cost / Pressure</span>
       </div>
     </section>
 
     <section id="history" class="view">
-      <div class="section-head" id="lineage"><p class="eyebrow">CONSTRUCTION HISTORY</p><h2>Revision history is part of the knowledge.</h2><p>A static summary can launder temporal states. Draft IV keeps the changes visible.</p></div>
+      <div class="section-head" id="lineage"><p class="eyebrow" data-i18n="historyEyebrow">CONSTRUCTION HISTORY</p><h2 data-i18n="historyTitle">Revision history is part of the knowledge.</h2><p data-i18n="historyLead">A static summary can launder temporal states. Draft IV keeps the changes visible.</p></div>
       <div class="timeline" id="timeline"></div>
       <article class="panel lineage-demo">
-        <p class="eyebrow">PROTOTYPE · H4 LINEAGE</p>
-        <h3>Do not compress a changing claim into one sentence.</h3>
+        <p class="eyebrow" data-i18n="h4Eyebrow">PROTOTYPE · H4 LINEAGE</p>
+        <h3 data-i18n="h4Title">Do not compress a changing claim into one sentence.</h3>
         <ol>
-          <li><strong>Initial:</strong> “mixture” offered as a broad explanation.</li>
-          <li><strong>Critique:</strong> catch-all wording is unfalsifiable.</li>
-          <li><strong>Retire:</strong> H4_MIXTURE_LABEL.</li>
-          <li><strong>Recover:</strong> original factorial design shows a measurable interaction term.</li>
-          <li><strong>Current:</strong> interaction term retained; catch-all mixture label remains retired.</li>
+          <li data-i18n-html="h4Initial"><strong>Initial:</strong> “mixture” offered as a broad explanation.</li>
+          <li data-i18n-html="h4Critique"><strong>Critique:</strong> catch-all wording is unfalsifiable.</li>
+          <li data-i18n-html="h4Retire"><strong>Retire:</strong> H4_MIXTURE_LABEL.</li>
+          <li data-i18n-html="h4Recover"><strong>Recover:</strong> original factorial design shows a measurable interaction term.</li>
+          <li data-i18n-html="h4Current"><strong>Current:</strong> interaction term retained; catch-all mixture label remains retired.</li>
         </ol>
       </article>
     </section>
   </main>
 
   <footer>
-    <span>ReachingOut · Draft IV · 2026</span>
-    <strong>ALWAYS UNDER CONSTRUCTION</strong>
-    <span>Source preserved · revisions explicit · unresolved allowed</span>
+    <span data-i18n="footerLeft">ReachingOut · Draft IV · 2026</span>
+    <strong data-i18n="footerCenter">ALWAYS UNDER CONSTRUCTION</strong>
+    <span data-i18n="footerRight">Source preserved · revisions explicit · unresolved allowed</span>
   </footer>
 
   <script src="app.js"></script>
