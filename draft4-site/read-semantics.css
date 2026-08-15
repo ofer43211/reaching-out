@@ -1,0 +1,84 @@
+/* DRAFT-IV-READ-SEMANTICS-013 START
+   Align the three Read summary cards with the Evidence grammar.
+   These labels are different epistemic axes, not confidence levels.
+*/
+
+.read-summary-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.read-summary-semantics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:54px;
+  margin-bottom:6px;
+}
+
+.read-summary-chip{
+  flex:0 1 auto;
+  min-width:132px;
+  min-height:48px;
+}
+
+/* “Still held” is presented as current epistemic position,
+   not as lineage, resolution or validation. */
+.read-summary-chip.axis-position{
+  border:1px solid #a9afa9;
+  background:#f7f6f1;
+  color:#59635c;
+}
+
+.read-summary-chip.axis-position strong{
+  color:var(--green);
+}
+
+/* Reuse the Evidence grammar for these established axes. */
+.read-summary-chip.axis-lineage{
+  border-inline-start-width:4px;
+  border-inline-start-color:var(--orange);
+  border-radius:3px 10px 10px 3px;
+}
+
+.read-summary-chip.axis-admission{
+  border-style:dashed;
+  border-width:2px;
+}
+
+.read-summary-chip.axis-validation{
+  border-style:double;
+  border-width:3px;
+}
+
+.read-summary-chip.axis-resolution{
+  border-style:dotted;
+  border-width:3px;
+}
+
+.read-summary-card-guild .read-summary-semantics{
+  align-items:flex-start;
+}
+
+.axis-copy-he{display:none}
+.rtl .axis-copy-en{display:none}
+.rtl .axis-copy-he{display:inline}
+
+.rtl .read-summary-chip.axis-lineage{
+  border-radius:10px 3px 3px 10px;
+}
+
+@media(max-width:960px){
+  .read-summary-semantics{
+    min-height:0;
+  }
+}
+
+@media(max-width:560px){
+  .read-summary-chip{
+    min-width:0;
+    width:100%;
+  }
+}
+
+/* DRAFT-IV-READ-SEMANTICS-013 END */
