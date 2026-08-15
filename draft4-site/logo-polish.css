@@ -436,3 +436,70 @@
 }
 
 /* DRAFT-IV-TYPE-SCALE-010 END */
+
+/* DRAFT-IV-FINAL-HEADER-011 START
+   CSS-only final logo scaling and placement.
+   Existing assets and hero typography remain unchanged.
+*/
+
+/* Tighten the remaining top air without touching the PNG again. */
+.hero {
+  padding-top: 12px !important;
+}
+
+.brand-marks {
+  margin-top: 0 !important;
+  direction: ltr !important;
+}
+
+/* Lockups are the grid items: enforce physical desktop sides. */
+.brand-lockup-shalom {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: end !important;
+}
+
+.brand-lockup-rotem {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: end !important;
+}
+
+/* Approximately 30% smaller than the current rendered sizes. */
+.brand-mark-shalom {
+  width: clamp(189px, 15.4vw, 235px) !important;
+}
+
+.brand-mark-rotem {
+  width: clamp(245px, 16.8vw, 287px) !important;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 12px !important;
+  }
+
+  .brand-lockup-rotem {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+  }
+
+  .brand-lockup-shalom {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: center !important;
+  }
+
+  .brand-mark-rotem {
+    width: min(59vw, 266px) !important;
+  }
+
+  .brand-mark-shalom {
+    width: min(55vw, 221px) !important;
+  }
+}
+
+/* DRAFT-IV-FINAL-HEADER-011 END */
