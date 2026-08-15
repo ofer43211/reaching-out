@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="model-source.css" />
   <link rel="stylesheet" href="logo-polish.css" />
+  <link rel="stylesheet" href="read-semantics.css" />
 </head>
 <body>
   <header class="topbar">
@@ -74,10 +75,47 @@
         <h2 data-i18n="currentTitle">Draft IV is a state, not a monument.</h2>
         <p data-i18n="currentLead">Draft III is preserved. Draft IV records what is currently held, revised, reopened, or unresolved. Draft V arrives when a conceptual phase shift earns a new draft number.</p>
       </div>
-      <div class="cards three">
-        <article class="card"><span class="tag held" data-i18n="stillHeld">STILL HELD</span><h3 data-i18n="fallibilityTitle">Fallibility</h3><p data-i18n="fallibilityBody">Our best account remains corrigible and revisable in contact with new evidence and new occurrences.</p></article>
-        <article class="card"><span class="tag revised" data-i18n="revised">REVISED</span><h3 data-i18n="verifiedTitle">Verified Hypothesis</h3><p data-i18n="verifiedBody">Outcome agreement does not by itself verify a causal mechanism. Support is bounded by the probe and its discrimination power.</p></article>
-        <article class="card"><span class="tag open" data-i18n="unresolved">UNRESOLVED</span><h3 data-i18n="guildTitle">Guild as Real-level mechanism</h3><p data-i18n="guildBody">The guild is a candidate relational structure with causal powers. It is not a knower and is not yet treated as a validated mechanism.</p></article>
+      <div class="cards three read-summary-cards">
+        <article class="card read-summary-card">
+          <div class="read-summary-semantics">
+            <span class="epistemic-chip read-summary-chip axis-position value-still-held">
+              <span class="axis-label"><span class="axis-copy-en">EPISTEMIC POSITION</span><span class="axis-copy-he">עמדה אפיסטמית</span></span>
+              <strong><span aria-hidden="true">●</span> <span data-i18n="stillHeld">STILL HELD</span></strong>
+            </span>
+          </div>
+          <h3 data-i18n="fallibilityTitle">Fallibility</h3>
+          <p data-i18n="fallibilityBody">Our best account remains corrigible and revisable in contact with new evidence and new occurrences.</p>
+        </article>
+
+        <article class="card read-summary-card">
+          <div class="read-summary-semantics">
+            <span class="epistemic-chip read-summary-chip axis-lineage value-revised">
+              <span class="axis-label"><span class="axis-copy-en">LINEAGE</span><span class="axis-copy-he">שושלת</span></span>
+              <strong><span aria-hidden="true">↻</span> <span data-i18n="revised">REVISED</span></strong>
+            </span>
+          </div>
+          <h3 data-i18n="verifiedTitle">Verified Hypothesis</h3>
+          <p data-i18n="verifiedBody">Outcome agreement does not by itself verify a causal mechanism. Support is bounded by the probe and its discrimination power.</p>
+        </article>
+
+        <article class="card read-summary-card read-summary-card-guild">
+          <div class="read-summary-semantics">
+            <span class="epistemic-chip read-summary-chip axis-admission value-candidate">
+              <span class="axis-label"><span class="axis-copy-en">EPISTEMIC ADMISSION</span><span class="axis-copy-he">קבלה אפיסטמית</span></span>
+              <strong><span aria-hidden="true">◇</span> <span data-i18n="candidate">CANDIDATE</span></strong>
+            </span>
+            <span class="epistemic-chip read-summary-chip axis-validation value-not-validated">
+              <span class="axis-label"><span class="axis-copy-en">VALIDATION</span><span class="axis-copy-he">אימות</span></span>
+              <strong><span aria-hidden="true">⊘</span> <span data-i18n="notValidated">NOT VALIDATED</span></strong>
+            </span>
+            <span class="epistemic-chip read-summary-chip axis-resolution value-unresolved">
+              <span class="axis-label"><span class="axis-copy-en">RESOLUTION</span><span class="axis-copy-he">הכרעה</span></span>
+              <strong><span aria-hidden="true">?</span> <span data-i18n="unresolved">UNRESOLVED</span></strong>
+            </span>
+          </div>
+          <h3 data-i18n="guildTitle">Guild as Real-level mechanism</h3>
+          <p data-i18n="guildBody">The guild is a candidate relational structure with causal powers. It is not a knower and is not yet treated as a validated mechanism.</p>
+        </article>
       </div>
 
       <div class="split">
@@ -188,4 +226,3 @@ Delta = trace requiring retroduction</pre>
   <script src="header-polish.js" defer></script>
 </body>
 </html>
-
