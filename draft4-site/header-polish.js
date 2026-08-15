@@ -7,6 +7,15 @@
 
   const all = () => [...document.querySelectorAll('body *')];
 
+  function ensureHistorySemantics() {
+    if (document.querySelector('link[data-draft4-history-semantics]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'history-semantics.css';
+    link.dataset.draft4HistorySemantics = 'true';
+    document.head.appendChild(link);
+  }
+
   function smallestMatching(predicate) {
     const candidates = all().filter((el) => {
       const text = norm(el.textContent);
@@ -71,6 +80,8 @@
   }
 
   function polishHeader() {
+    ensureHistorySemantics();
+
     const marks = document.querySelector('.brand-marks');
     if (!marks) return;
 
