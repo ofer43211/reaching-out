@@ -114,6 +114,17 @@
   line-height:1.25;
 }
 
+/* Cross-view consistency: an in-model candidate uses the same compound
+   token as candidacy elsewhere — diamond + dashed frame + candidate text. */
+.dimension.real .node.accent .mini{
+  border-style:dashed;
+  border-width:2px;
+  border-radius:10px;
+}
+.dimension.real .node.accent .mini::before{
+  content:"◇ ";
+}
+
 .rtl .model-status-row::before{
   content:"מצב המודל\A◇ מועמד";
 }
