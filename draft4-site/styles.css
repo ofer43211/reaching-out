@@ -11,3 +11,73 @@ html[dir="rtl"] .brand-marks{direction:rtl}
   .brand-mark-rotem{width:min(260px,72vw)}
   .brand-mark-shalom{width:92px}
 }
+
+/* DRAFT-IV-EPISTEMIC-PRESENTATION-011 START
+   Presentation semantics only.
+   Distinguishes claim type, admission, warrant, validation,
+   resolution, lineage and temporal status without relying on color alone.
+*/
+.claim-semantics{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(145px,1fr));
+  gap:8px;
+  margin:0 0 18px;
+}
+.epistemic-chip{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+  min-height:52px;
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(255,255,255,.72);
+  color:var(--ink);
+}
+.epistemic-chip .axis-label{
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+.epistemic-chip strong{font-size:11px;line-height:1.25}
+.epistemic-chip.axis-type{border-width:2px;border-radius:6px}
+.epistemic-chip.axis-admission{border-style:dashed}
+.epistemic-chip.axis-warrant{border-inline-start-width:4px}
+.epistemic-chip.axis-validation{border-style:double;border-width:3px}
+.epistemic-chip.axis-resolution{border-style:dotted;border-width:2px}
+.epistemic-chip.axis-lineage{border-inline-start-width:4px;border-radius:3px 10px 10px 3px}
+.epistemic-chip.axis-temporal{border-style:solid;border-color:#a9afa9;background:transparent}
+.epistemic-chip.is-not-explicit{
+  opacity:.58;
+  background:transparent;
+  border-style:dotted;
+}
+.epistemic-chip.value-candidate{border-style:dashed;border-width:2px}
+.epistemic-chip.value-not-validated{border-style:double;border-width:3px}
+.epistemic-chip.value-unresolved{border-style:dotted;border-width:3px}
+.epistemic-chip.value-revised{border-inline-start-color:var(--orange)}
+.epistemic-chip.value-refined{border-inline-start-color:var(--gold)}
+.epistemic-chip.value-current{color:#59635c;background:#f7f6f1}
+.claim-button small{line-height:1.45}
+.claim-ceiling-label{
+  color:var(--red)!important;
+  font-weight:900!important;
+}
+.claim-ceiling-value{
+  padding:12px 14px;
+  border-inline-start:4px solid var(--red);
+  border-radius:8px;
+  background:#fff7f4;
+  font-weight:650;
+}
+.rtl .epistemic-chip .axis-label{letter-spacing:.02em;text-transform:none}
+.rtl .epistemic-chip.axis-lineage{border-radius:10px 3px 3px 10px}
+@media(max-width:720px){
+  .claim-semantics{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:460px){
+  .claim-semantics{grid-template-columns:1fr}
+}
+/* DRAFT-IV-EPISTEMIC-PRESENTATION-011 END */
