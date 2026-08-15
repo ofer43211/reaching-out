@@ -1,0 +1,164 @@
+/* DRAFT-IV-HISTORY-SEMANTICS-016 START
+   Presentation-only history grammar.
+   The timeline contains different kinds of state/event metadata:
+   source preservation, review state, workflow action, lineage,
+   build state, and future state. They are not one confidence ladder.
+*/
+
+#history .timeline{
+  border-inline-start-color:#aeb5af;
+}
+
+#history .time-item{
+  padding-bottom:28px;
+}
+
+#history .time-item time{
+  display:inline-flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:2px;
+  min-width:180px;
+  margin-bottom:7px;
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:rgba(255,255,255,.68);
+  color:var(--ink);
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:0;
+  line-height:1.25;
+}
+
+#history .time-item time::before{
+  display:block;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+}
+
+/* 1. Draft III — preservation / source-state. */
+#history .time-item:nth-child(1) time{
+  border-inline-start:4px solid var(--green2);
+  border-radius:3px 10px 10px 3px;
+}
+#history .time-item:nth-child(1) time::before{
+  content:"SOURCE PRESERVATION · ↳";
+}
+#history .time-item:nth-child(1)::before{
+  border-radius:2px;
+  background:var(--green2);
+}
+
+/* 2. Re-reading — review state, not lineage or validation. */
+#history .time-item:nth-child(2) time{
+  border:2px dotted var(--blue);
+}
+#history .time-item:nth-child(2) time::before{
+  content:"REVIEW STATE · ↺";
+}
+#history .time-item:nth-child(2)::before{
+  background:var(--bg);
+  border:2px solid var(--blue);
+}
+
+/* 3. REQUEST_PATCH — requested workflow action. */
+#history .time-item:nth-child(3) time{
+  border:2px dashed var(--orange);
+}
+#history .time-item:nth-child(3) time::before{
+  content:"WORKFLOW ACTION · →";
+}
+#history .time-item:nth-child(3)::before{
+  border-radius:2px;
+  background:var(--orange);
+  transform:rotate(45deg);
+}
+
+/* 4. REFINED — lineage change. */
+#history .time-item:nth-child(4) time{
+  border-inline-start:4px solid var(--gold);
+  border-radius:3px 10px 10px 3px;
+}
+#history .time-item:nth-child(4) time::before{
+  content:"LINEAGE · ⊕";
+}
+#history .time-item:nth-child(4)::before{
+  background:var(--gold);
+}
+
+/* 5. Draft IV — current build state. */
+#history .time-item:nth-child(5) time{
+  border:2px solid #89918b;
+  border-radius:4px;
+  background:#f7f6f1;
+}
+#history .time-item:nth-child(5) time::before{
+  content:"BUILD STATE · ●";
+}
+#history .time-item:nth-child(5)::before{
+  background:var(--ink);
+}
+
+/* 6. Draft V — future/temporal state, deliberately not promoted. */
+#history .time-item:nth-child(6) time{
+  border:2px dotted #a9afa9;
+  background:transparent;
+  opacity:.72;
+}
+#history .time-item:nth-child(6) time::before{
+  content:"FUTURE STATE · …";
+}
+#history .time-item:nth-child(6)::before{
+  background:var(--bg);
+  border:2px dotted #7e8780;
+}
+
+/* H4 prototype: keep its five transitions visibly distinct without
+   inventing a shared confidence scale. The existing text remains primary. */
+#history .lineage-demo ol{
+  display:grid;
+  gap:8px;
+  list-style-position:inside;
+}
+
+#history .lineage-demo li{
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:rgba(255,255,255,.5);
+}
+
+#history .lineage-demo li:nth-child(1){border-inline-start:4px solid #89918b}
+#history .lineage-demo li:nth-child(2){border-style:dotted;border-width:2px}
+#history .lineage-demo li:nth-child(3){border:2px dashed var(--red)}
+#history .lineage-demo li:nth-child(4){border:3px double var(--green2)}
+#history .lineage-demo li:nth-child(5){border:2px solid var(--ink);background:#f7f6f1}
+
+.rtl #history .time-item time::before{
+  letter-spacing:.02em;
+  text-transform:none;
+}
+.rtl #history .time-item:nth-child(1) time::before{content:"שימור מקור · ↳"}
+.rtl #history .time-item:nth-child(2) time::before{content:"מצב בדיקה · ↺"}
+.rtl #history .time-item:nth-child(3) time::before{content:"פעולת workflow · →"}
+.rtl #history .time-item:nth-child(4) time::before{content:"שושלת · ⊕"}
+.rtl #history .time-item:nth-child(5) time::before{content:"מצב בנייה · ●"}
+.rtl #history .time-item:nth-child(6) time::before{content:"מצב עתידי · …"}
+
+.rtl #history .time-item:nth-child(1) time,
+.rtl #history .time-item:nth-child(4) time{
+  border-radius:10px 3px 3px 10px;
+}
+
+@media(max-width:560px){
+  #history .time-item time{
+    width:100%;
+    min-width:0;
+  }
+}
+
+/* DRAFT-IV-HISTORY-SEMANTICS-016 END */
