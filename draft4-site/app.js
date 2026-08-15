@@ -122,6 +122,11 @@ function semanticSummary(c){
   });
   return parts.join(' · ');
 }
+function missingSemanticSummary(c){
+  const missing=semanticAxes.filter(axis=>semanticValue(c,axis)==='NOT_EXPLICIT');
+  if(!missing.length) return '';
+  return `<div class="claim-missing-summary"><span class="meta-pill" style="opacity:.64;border-style:dotted;background:transparent">${semanticSymbols.NOT_EXPLICIT} ${statusLabel('NOT_EXPLICIT')}: ${missing.map(axis=>axisLabel(axis)).join(' · ')}</span></div>`;
+}
 function renderLegend(){
   legend.innerHTML='';
   Object.entries(claimTypes).forEach(([k,v])=>{
@@ -134,8 +139,9 @@ function renderClaim(c){
   activeClaimId=c.id;
   const t=c[currentLang];
   document.querySelectorAll('.claim-button').forEach(x=>x.classList.toggle('active',x.dataset.id===c.id));
-  const semanticChips=[typeChip(c.type),...semanticAxes.map(axis=>semanticChip(axis,semanticValue(c,axis)))].join('');
-  detail.innerHTML=`<div class="claim-semantics">${semanticChips}</div><h3>${t.title}</h3><dl><dt class="claim-ceiling-label">${copy[currentLang].claimCeiling}</dt><dd class="claim-ceiling-value">${t.ceiling}</dd><dt>${copy[currentLang].evidenceBasis}</dt><dd>${t.evidence}</dd><dt>${copy[currentLang].doesNotMean}</dt><dd>${t.counter}</dd><dt>${copy[currentLang].lineage}</dt><dd>${t.lineage}</dd></dl>`;
+  const explicitAxes=semanticAxes.filter(axis=>semanticValue(c,axis)!=='NOT_EXPLICIT');
+  const semanticChips=[typeChip(c.type),...explicitAxes.map(axis=>semanticChip(axis,semanticValue(c,axis)))].join('');
+  detail.innerHTML=`<div class="claim-semantics">${semanticChips}</div>${missingSemanticSummary(c)}<h3>${t.title}</h3><dl><dt class="claim-ceiling-label">${copy[currentLang].claimCeiling}</dt><dd class="claim-ceiling-value">${t.ceiling}</dd><dt>${copy[currentLang].evidenceBasis}</dt><dd>${t.evidence}</dd><dt>${copy[currentLang].doesNotMean}</dt><dd>${t.counter}</dd><dt>${copy[currentLang].lineage}</dt><dd>${t.lineage}</dd></dl>`;
 }
 function renderClaims(){
   list.innerHTML='';
