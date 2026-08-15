@@ -1,6 +1,11 @@
-/* DRAFT-IV-READ-SEMANTICS-013 START
+/* DRAFT-IV-READ-SEMANTICS-014 START
    Align the three Read summary cards with the Evidence grammar.
    These labels are different epistemic axes, not confidence levels.
+
+   Compatibility note:
+   the first card still carries the legacy axis-position / stillHeld hooks
+   in the current HTML. Presentation now interprets that state correctly
+   as LINEAGE / RETAINED; no new epistemic axis is introduced.
 */
 
 .read-summary-card{
@@ -22,19 +27,42 @@
   min-height:48px;
 }
 
-/* “Still held” is presented as current epistemic position,
-   not as lineage, resolution or validation. */
+/* Fallibility: retained across the current revision lineage.
+   RETAINED is lineage, not warrant/admission/confidence. */
 .read-summary-chip.axis-position{
-  border:1px solid #a9afa9;
-  background:#f7f6f1;
-  color:#59635c;
+  border-inline-start-width:4px;
+  border-inline-start-color:var(--green);
+  border-radius:3px 10px 10px 3px;
+  background:rgba(255,255,255,.72);
+  color:var(--ink);
 }
 
-.read-summary-chip.axis-position strong{
+.read-summary-chip.axis-position .axis-label > span{
+  display:none !important;
+}
+
+.read-summary-chip.axis-position .axis-label::after{
+  content:"LINEAGE";
+}
+
+.rtl .read-summary-chip.axis-position .axis-label::after{
+  content:"שושלת";
+}
+
+.read-summary-chip.axis-position strong [data-i18n="stillHeld"]{
+  display:none;
+}
+
+.read-summary-chip.axis-position strong::after{
+  content:"RETAINED";
   color:var(--green);
 }
 
-/* Reuse the Evidence grammar for these established axes. */
+.rtl .read-summary-chip.axis-position strong::after{
+  content:"נשמר";
+}
+
+/* Reuse the Evidence grammar for established axes. */
 .read-summary-chip.axis-lineage{
   border-inline-start-width:4px;
   border-inline-start-color:var(--orange);
@@ -64,7 +92,8 @@
 .rtl .axis-copy-en{display:none}
 .rtl .axis-copy-he{display:inline}
 
-.rtl .read-summary-chip.axis-lineage{
+.rtl .read-summary-chip.axis-lineage,
+.rtl .read-summary-chip.axis-position{
   border-radius:10px 3px 3px 10px;
 }
 
@@ -81,4 +110,4 @@
   }
 }
 
-/* DRAFT-IV-READ-SEMANTICS-013 END */
+/* DRAFT-IV-READ-SEMANTICS-014 END */
