@@ -503,3 +503,58 @@
 }
 
 /* DRAFT-IV-FINAL-HEADER-011 END */
+
+/* DRAFT-IV-COMPACT-WORKSPACE-012 START
+   Read keeps the full landing composition.
+   Model / Evidence / History collapse the landing-only hero material
+   so the active workspace becomes visible immediately after navigation.
+*/
+
+body:has(.nav-btn.active:not([data-view="read"])) .hero {
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+  max-width: none !important;
+}
+
+/* Keep META + NAV as the compact workspace header; hide landing-only material. */
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .brand-marks,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .eyebrow,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > h1,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .lead,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .hero-actions,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .claim-ceiling {
+  display: none !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .draft4-meta-row {
+  margin: 0 auto 4px !important;
+  padding: 4px 0 !important;
+  min-height: 0 !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .draft4-nav-row {
+  margin: 0 auto 8px !important;
+  padding: 4px 0 10px !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .view.active > .section-head {
+  padding-top: 12px !important;
+  padding-bottom: 14px !important;
+}
+
+@media (max-width: 720px) {
+  body:has(.nav-btn.active:not([data-view="read"])) .hero {
+    padding-top: 4px !important;
+  }
+
+  body:has(.nav-btn.active:not([data-view="read"])) .draft4-meta-row {
+    margin-bottom: 2px !important;
+  }
+
+  body:has(.nav-btn.active:not([data-view="read"])) .draft4-nav-row {
+    margin-bottom: 6px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* DRAFT-IV-COMPACT-WORKSPACE-012 END */
