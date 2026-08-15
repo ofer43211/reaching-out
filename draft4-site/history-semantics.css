@@ -1,8 +1,8 @@
-/* DRAFT-IV-HISTORY-SEMANTICS-016 START
+/* DRAFT-IV-HISTORY-SEMANTICS-017 START
    Presentation-only history grammar.
    The timeline contains different kinds of state/event metadata:
-   source preservation, review state, workflow action, lineage,
-   build state, and future state. They are not one confidence ladder.
+   source preservation, review state, workflow request, lineage,
+   draft state, and future state. They are not one confidence ladder.
 */
 
 #history .timeline{
@@ -65,12 +65,12 @@
   border:2px solid var(--blue);
 }
 
-/* 3. REQUEST_PATCH — requested workflow action. */
+/* 3. REQUEST_PATCH — a requested workflow change, not an executed action. */
 #history .time-item:nth-child(3) time{
   border:2px dashed var(--orange);
 }
 #history .time-item:nth-child(3) time::before{
-  content:"WORKFLOW ACTION · →";
+  content:"WORKFLOW REQUEST · →";
 }
 #history .time-item:nth-child(3)::before{
   border-radius:2px;
@@ -90,14 +90,14 @@
   background:var(--gold);
 }
 
-/* 5. Draft IV — current build state. */
+/* 5. Draft IV — current draft state, not software build/deploy state. */
 #history .time-item:nth-child(5) time{
   border:2px solid #89918b;
   border-radius:4px;
   background:#f7f6f1;
 }
 #history .time-item:nth-child(5) time::before{
-  content:"BUILD STATE · ●";
+  content:"DRAFT STATE · ●";
 }
 #history .time-item:nth-child(5)::before{
   background:var(--ink);
@@ -144,9 +144,9 @@
 }
 .rtl #history .time-item:nth-child(1) time::before{content:"שימור מקור · ↳"}
 .rtl #history .time-item:nth-child(2) time::before{content:"מצב בדיקה · ↺"}
-.rtl #history .time-item:nth-child(3) time::before{content:"פעולת workflow · →"}
+.rtl #history .time-item:nth-child(3) time::before{content:"בקשת שינוי · →"}
 .rtl #history .time-item:nth-child(4) time::before{content:"שושלת · ⊕"}
-.rtl #history .time-item:nth-child(5) time::before{content:"מצב בנייה · ●"}
+.rtl #history .time-item:nth-child(5) time::before{content:"מצב טיוטה · ●"}
 .rtl #history .time-item:nth-child(6) time::before{content:"מצב עתידי · …"}
 
 .rtl #history .time-item:nth-child(1) time,
@@ -161,4 +161,4 @@
   }
 }
 
-/* DRAFT-IV-HISTORY-SEMANTICS-016 END */
+/* DRAFT-IV-HISTORY-SEMANTICS-017 END */
