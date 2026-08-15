@@ -43,16 +43,37 @@ const claimTypes={
   REPORTED:{en:'stated by a person or system',he:'דווח בידי אדם או מערכת'},
   INFERENCE:{en:'reasoned from evidence',he:'היסק מתוך ראיות'},
   HYPOTHESIS:{en:'candidate explanation',he:'הסבר מועמד'},
-  BELIEF:{en:'worldview / premise',he:'אמונה / הנחת יסוד'},
-  UNRESOLVED:{en:'not currently discriminated',he:'טרם הובחן באופן מכריע'}
+  BELIEF:{en:'worldview / premise',he:'אמונה / הנחת יסוד'}
 };
 
+const semanticAxes=['admission','warrant','validation','resolution','lineage','temporal'];
+const semanticAxisLabels={
+  type:{en:'CLAIM TYPE',he:'סוג טענה'},
+  admission:{en:'EPISTEMIC ADMISSION',he:'קבלה אפיסטמית'},
+  warrant:{en:'EPISTEMIC WARRANT',he:'הצדקה אפיסטמית'},
+  validation:{en:'VALIDATION',he:'אימות'},
+  resolution:{en:'RESOLUTION',he:'הכרעה'},
+  lineage:{en:'LINEAGE',he:'שושלת'},
+  temporal:{en:'TEMPORAL',he:'זמן'}
+};
+const semanticStatusLabels={
+  NOT_EXPLICIT:{en:'NOT EXPLICIT',he:'לא מפורש'},
+  CANDIDATE:{en:'CANDIDATE',he:'מועמד'},
+  NOT_VALIDATED:{en:'NOT VALIDATED',he:'לא אומת'},
+  UNRESOLVED:{en:'UNRESOLVED',he:'לא מוכרע'},
+  REVISED:{en:'REVISED',he:'תוקן'},
+  REFINED:{en:'REFINED',he:'שוכלל'},
+  CURRENT:{en:'CURRENT · 2026',he:'נוכחי · 2026'}
+};
+const typeSymbols={OBSERVED:'○',REPORTED:'❞',INFERENCE:'△',HYPOTHESIS:'◇',BELIEF:'◆'};
+const semanticSymbols={NOT_EXPLICIT:'—',CANDIDATE:'◇',NOT_VALIDATED:'⊘',UNRESOLVED:'?',REVISED:'↻',REFINED:'⊕',CURRENT:'●'};
+
 const claims=[
- {id:'fringe',state:'REVISED',type:'INFERENCE',en:{title:'Fringe is an anomaly-sensitivity function',ceiling:'Supported as a faithful current reconstruction; historical expression included both intrapersonal sensitivity and socially allocated function.',evidence:'Draft III diagrams and dialogue; 2026 re-reading of role allocation and rotation.',counter:'Do not claim that Fringe was never a role. Do not make any one person or agent the permanent critic.',lineage:'Earlier v2 wording “not a person or role” was too strong. Current: internally carried, externally allocatable, never monopolized by identity.'},he:{title:'Fringe הוא פונקציית רגישות לאנומליה',ceiling:'נתמך כשחזור נאמן של המצב הנוכחי; הביטוי ההיסטורי כלל גם רגישות תוך־אישית וגם פונקציה שהוקצתה חברתית.',evidence:'תרשימי Draft III ודיאלוג; קריאה מחודשת ב־2026 של הקצאת תפקידים ורוטציה.',counter:'אין לטעון ש־Fringe מעולם לא היה תפקיד. אין להפוך אדם או סוכן יחיד למבקר הקבוע.',lineage:'הניסוח הקודם ב־v2 — “לא אדם או תפקיד” — היה חזק מדי. הניסוח הנוכחי: נישא מבפנים, ניתן להקצאה מבחוץ, ולעולם אינו מונופול של זהות.'}},
- {id:'receipts',state:'REFINED',type:'INFERENCE',en:{title:'Receipts precede interpretation',ceiling:'Typed receipt admission is a 2026 refinement of prior ReflexGuard controls, not a wholly new invention.',evidence:'Prior Context Receipt / Evidence Eligibility / Reference Admission controls plus 2026 differentiation of inventory, context, runtime, effect and cost receipts.',counter:'A receipt is a trace, not truth. Missing receipt is not automatically a negative result.',lineage:'Prior control → typed receipt recombination → claim/probe-derived receipt requirements.'},he:{title:'קבלות קודמות לפרשנות',ceiling:'קבלת קבלות מטופלות היא שכלול מ־2026 של בקרות ReflexGuard קודמות, לא המצאה חדשה לחלוטין.',evidence:'בקרות קודמות של Context Receipt / Evidence Eligibility / Reference Admission, יחד עם הבחנה מ־2026 בין קבלות מלאי, הקשר, runtime, השפעה ועלות.',counter:'קבלה היא עקבה, לא אמת. קבלה חסרה אינה תוצאה שלילית אוטומטית.',lineage:'בקרה קודמת → צירוף מחדש של קבלות מטופלות → דרישות קבלה הנגזרות מן הטענה/הפרוב.'}},
- {id:'guild',state:'UNRESOLVED',type:'HYPOTHESIS',en:{title:'Guild may possess emergent causal powers',ceiling:'Candidate Critical Realist interpretation only. Not validated as a mechanism.',evidence:'Observed relational effects involving roles, access, memory, attention, cost, language and norms across multi-agent work.',counter:'Guild is not an agent, not a super-mind, not a sovereign knower.',lineage:'Community/cohort structures → multi-agent 2026 retroduction → candidate Real-level relational mechanism.'},he:{title:'ל־Guild עשויים להיות כוחות סיבתיים מתהווים',ceiling:'פרשנות ריאליסטית־ביקורתית מועמדת בלבד. לא אומתה כמנגנון.',evidence:'השפעות יחסיות שנצפו סביב תפקידים, גישה, זיכרון, קשב, עלות, שפה ונורמות בעבודה רב־סוכנית.',counter:'Guild אינה סוכן, אינה super-mind ואינה יודע ריבוני.',lineage:'מבני קהילה/קוהורט → רטרודוקציה רב־סוכנית 2026 → מנגנון יחסי מועמד ברמת הממשי.'}},
- {id:'verification',state:'CURRENT',type:'INFERENCE',en:{title:'Outcome match does not verify a mechanism',ceiling:'A matched outcome may support a hypothesis only within preregistered discrimination conditions and alternative explanations.',evidence:'Open-system CR reasoning, probe design failures, and later discrimination logic.',counter:'ACTION_SUCCEEDED does not imply HYPOTHESIS_CONFIRMED.',lineage:'Draft III “Verified Hypothesis” → critique → bounded support / surviving hypothesis / NO_DISCRIMINATION.'},he:{title:'התאמת תוצאה אינה מאמתת מנגנון',ceiling:'תוצאה תואמת עשויה לתמוך בהשערה רק בתוך תנאי הבחנה שנרשמו מראש וביחס להסברים חלופיים.',evidence:'הנמקה ריאליסטית־ביקורתית במערכת פתוחה, כשלי תכנון פרוב ולוגיקת הבחנה מאוחרת יותר.',counter:'ACTION_SUCCEEDED אינו גורר HYPOTHESIS_CONFIRMED.',lineage:'Draft III “Verified Hypothesis” → ביקורת → תמיכה תחומה / השערה ששרדה / NO_DISCRIMINATION.'}},
- {id:'sovereignty',state:'CANDIDATE',type:'HYPOTHESIS',en:{title:'Cognitive sovereignty applies against the self',ceiling:'Normative-methodological candidate, not a discovery of unconscious motives.',evidence:'Forecast–Hypothesis delta creates a reflexive inspection surface for evidence change, stake, framing and possible MM.',counter:'Delta ≠ unconscious motive discovered. Introspection does not confer privileged truth access.',lineage:'Personal epistemology → Reflexive Fringe → 2026 formulation: no internal component gains sovereignty merely because it is mine.'},he:{title:'ריבונות קוגניטיבית חלה גם מול העצמי',ceiling:'מועמד נורמטיבי־מתודולוגי, לא גילוי של מניעים לא־מודעים.',evidence:'פער Forecast–Hypothesis יוצר משטח בדיקה רפלקסיבי לשינוי בראיות, באינטרס, במסגרת וב־MM אפשרי.',counter:'Delta ≠ גילוי של מניע לא־מודע. אינטרוספקציה אינה מקנה גישה מועדפת לאמת.',lineage:'אפיסטמולוגיה אישית → Fringe רפלקסיבי → ניסוח 2026: שום רכיב פנימי אינו מקבל ריבונות רק מפני שהוא שלי.'}}
+ {id:'fringe',type:'INFERENCE',semantics:{admission:'NOT_EXPLICIT',warrant:'NOT_EXPLICIT',validation:'NOT_EXPLICIT',resolution:'NOT_EXPLICIT',lineage:'REVISED',temporal:'CURRENT'},en:{title:'Fringe is an anomaly-sensitivity function',ceiling:'Supported as a faithful current reconstruction; historical expression included both intrapersonal sensitivity and socially allocated function.',evidence:'Draft III diagrams and dialogue; 2026 re-reading of role allocation and rotation.',counter:'Do not claim that Fringe was never a role. Do not make any one person or agent the permanent critic.',lineage:'Earlier v2 wording “not a person or role” was too strong. Current: internally carried, externally allocatable, never monopolized by identity.'},he:{title:'Fringe הוא פונקציית רגישות לאנומליה',ceiling:'נתמך כשחזור נאמן של המצב הנוכחי; הביטוי ההיסטורי כלל גם רגישות תוך־אישית וגם פונקציה שהוקצתה חברתית.',evidence:'תרשימי Draft III ודיאלוג; קריאה מחודשת ב־2026 של הקצאת תפקידים ורוטציה.',counter:'אין לטעון ש־Fringe מעולם לא היה תפקיד. אין להפוך אדם או סוכן יחיד למבקר הקבוע.',lineage:'הניסוח הקודם ב־v2 — “לא אדם או תפקיד” — היה חזק מדי. הניסוח הנוכחי: נישא מבפנים, ניתן להקצאה מבחוץ, ולעולם אינו מונופול של זהות.'}},
+ {id:'receipts',type:'INFERENCE',semantics:{admission:'NOT_EXPLICIT',warrant:'NOT_EXPLICIT',validation:'NOT_EXPLICIT',resolution:'NOT_EXPLICIT',lineage:'REFINED',temporal:'CURRENT'},en:{title:'Receipts precede interpretation',ceiling:'Typed receipt admission is a 2026 refinement of prior ReflexGuard controls, not a wholly new invention.',evidence:'Prior Context Receipt / Evidence Eligibility / Reference Admission controls plus 2026 differentiation of inventory, context, runtime, effect and cost receipts.',counter:'A receipt is a trace, not truth. Missing receipt is not automatically a negative result.',lineage:'Prior control → typed receipt recombination → claim/probe-derived receipt requirements.'},he:{title:'קבלות קודמות לפרשנות',ceiling:'קבלת קבלות מטופלות היא שכלול מ־2026 של בקרות ReflexGuard קודמות, לא המצאה חדשה לחלוטין.',evidence:'בקרות קודמות של Context Receipt / Evidence Eligibility / Reference Admission, יחד עם הבחנה מ־2026 בין קבלות מלאי, הקשר, runtime, השפעה ועלות.',counter:'קבלה היא עקבה, לא אמת. קבלה חסרה אינה תוצאה שלילית אוטומטית.',lineage:'בקרה קודמת → צירוף מחדש של קבלות מטופלות → דרישות קבלה הנגזרות מן הטענה/הפרוב.'}},
+ {id:'guild',type:'HYPOTHESIS',semantics:{admission:'CANDIDATE',warrant:'NOT_EXPLICIT',validation:'NOT_VALIDATED',resolution:'UNRESOLVED',lineage:'NOT_EXPLICIT',temporal:'CURRENT'},en:{title:'Guild may possess emergent causal powers',ceiling:'Candidate Critical Realist interpretation only. Not validated as a mechanism.',evidence:'Observed relational effects involving roles, access, memory, attention, cost, language and norms across multi-agent work.',counter:'Guild is not an agent, not a super-mind, not a sovereign knower.',lineage:'Community/cohort structures → multi-agent 2026 retroduction → candidate Real-level relational mechanism.'},he:{title:'ל־Guild עשויים להיות כוחות סיבתיים מתהווים',ceiling:'פרשנות ריאליסטית־ביקורתית מועמדת בלבד. לא אומתה כמנגנון.',evidence:'השפעות יחסיות שנצפו סביב תפקידים, גישה, זיכרון, קשב, עלות, שפה ונורמות בעבודה רב־סוכנית.',counter:'Guild אינה סוכן, אינה super-mind ואינה יודע ריבוני.',lineage:'מבני קהילה/קוהורט → רטרודוקציה רב־סוכנית 2026 → מנגנון יחסי מועמד ברמת הממשי.'}},
+ {id:'verification',type:'INFERENCE',semantics:{admission:'NOT_EXPLICIT',warrant:'NOT_EXPLICIT',validation:'NOT_EXPLICIT',resolution:'NOT_EXPLICIT',lineage:'NOT_EXPLICIT',temporal:'CURRENT'},en:{title:'Outcome match does not verify a mechanism',ceiling:'A matched outcome may support a hypothesis only within preregistered discrimination conditions and alternative explanations.',evidence:'Open-system CR reasoning, probe design failures, and later discrimination logic.',counter:'ACTION_SUCCEEDED does not imply HYPOTHESIS_CONFIRMED.',lineage:'Draft III “Verified Hypothesis” → critique → bounded support / surviving hypothesis / NO_DISCRIMINATION.'},he:{title:'התאמת תוצאה אינה מאמתת מנגנון',ceiling:'תוצאה תואמת עשויה לתמוך בהשערה רק בתוך תנאי הבחנה שנרשמו מראש וביחס להסברים חלופיים.',evidence:'הנמקה ריאליסטית־ביקורתית במערכת פתוחה, כשלי תכנון פרוב ולוגיקת הבחנה מאוחרת יותר.',counter:'ACTION_SUCCEEDED אינו גורר HYPOTHESIS_CONFIRMED.',lineage:'Draft III “Verified Hypothesis” → ביקורת → תמיכה תחומה / השערה ששרדה / NO_DISCRIMINATION.'}},
+ {id:'sovereignty',type:'HYPOTHESIS',semantics:{admission:'CANDIDATE',warrant:'NOT_EXPLICIT',validation:'NOT_EXPLICIT',resolution:'NOT_EXPLICIT',lineage:'NOT_EXPLICIT',temporal:'CURRENT'},en:{title:'Cognitive sovereignty applies against the self',ceiling:'Normative-methodological candidate, not a discovery of unconscious motives.',evidence:'Forecast–Hypothesis delta creates a reflexive inspection surface for evidence change, stake, framing and possible MM.',counter:'Delta ≠ unconscious motive discovered. Introspection does not confer privileged truth access.',lineage:'Personal epistemology → Reflexive Fringe → 2026 formulation: no internal component gains sovereignty merely because it is mine.'},he:{title:'ריבונות קוגניטיבית חלה גם מול העצמי',ceiling:'מועמד נורמטיבי־מתודולוגי, לא גילוי של מניעים לא־מודעים.',evidence:'פער Forecast–Hypothesis יוצר משטח בדיקה רפלקסיבי לשינוי בראיות, באינטרס, במסגרת וב־MM אפשרי.',counter:'Delta ≠ גילוי של מניע לא־מודע. אינטרוספקציה אינה מקנה גישה מועדפת לאמת.',lineage:'אפיסטמולוגיה אישית → Fringe רפלקסיבי → ניסוח 2026: שום רכיב פנימי אינו מקבל ריבונות רק מפני שהוא שלי.'}}
 ];
 
 const history=[
@@ -72,19 +93,40 @@ const modelButton=document.getElementById('loadModelSource');
 const modelSource=document.getElementById('modelSource');
 let sourceLoaded=false;
 
-function stateLabel(state){
-  if(currentLang==='en') return state;
-  return {REVISED:'תוקן',REFINED:'שוכלל',UNRESOLVED:'לא מוכרע',CURRENT:'נוכחי',CANDIDATE:'מועמד'}[state]||state;
-}
 function typeLabel(type){
   if(currentLang==='en') return type;
-  return {OBSERVED:'נצפה',REPORTED:'דווח',INFERENCE:'היסק',HYPOTHESIS:'השערה',BELIEF:'אמונה',UNRESOLVED:'לא מוכרע'}[type]||type;
+  return {OBSERVED:'נצפה',REPORTED:'דווח',INFERENCE:'היסק',HYPOTHESIS:'השערה',BELIEF:'אמונה'}[type]||type;
+}
+function axisLabel(axis){
+  return semanticAxisLabels[axis]?.[currentLang]||axis;
+}
+function statusLabel(status){
+  return semanticStatusLabels[status]?.[currentLang]||status;
+}
+function semanticValue(c,axis){
+  return c.semantics?.[axis]||'NOT_EXPLICIT';
+}
+function typeChip(type){
+  const slug=type.toLowerCase().replaceAll('_','-');
+  return `<span class="meta-pill epistemic-chip axis-type value-${slug}" data-axis="type" data-value="${type}"><span class="axis-label">${axisLabel('type')}</span> <strong>${typeSymbols[type]||''} ${typeLabel(type)}</strong></span>`;
+}
+function semanticChip(axis,value){
+  const slug=value.toLowerCase().replaceAll('_','-');
+  return `<span class="meta-pill epistemic-chip axis-${axis} value-${slug}${value==='NOT_EXPLICIT'?' is-not-explicit':''}" data-axis="${axis}" data-value="${value}"><span class="axis-label">${axisLabel(axis)}</span> <strong>${semanticSymbols[value]||''} ${statusLabel(value)}</strong></span>`;
+}
+function semanticSummary(c){
+  const parts=[`${typeSymbols[c.type]||''} ${typeLabel(c.type)}`];
+  semanticAxes.forEach(axis=>{
+    const value=semanticValue(c,axis);
+    if(value!=='NOT_EXPLICIT') parts.push(`${semanticSymbols[value]||''} ${statusLabel(value)}`);
+  });
+  return parts.join(' · ');
 }
 function renderLegend(){
   legend.innerHTML='';
   Object.entries(claimTypes).forEach(([k,v])=>{
     const e=document.createElement('div');e.className='legend-item';
-    e.innerHTML=`<strong>${typeLabel(k)}</strong>${v[currentLang]}`;
+    e.innerHTML=`<strong>${typeSymbols[k]||''} ${typeLabel(k)}</strong>${v[currentLang]}`;
     legend.appendChild(e);
   });
 }
@@ -92,14 +134,14 @@ function renderClaim(c){
   activeClaimId=c.id;
   const t=c[currentLang];
   document.querySelectorAll('.claim-button').forEach(x=>x.classList.toggle('active',x.dataset.id===c.id));
-  const tagClass=c.state==='UNRESOLVED'?'open':c.state==='REVISED'?'revised':'held';
-  detail.innerHTML=`<span class="tag ${tagClass}">${stateLabel(c.state)}</span><h3>${t.title}</h3><div class="claim-meta"><span class="meta-pill">${typeLabel(c.type)}</span><span class="meta-pill">${copy[currentLang].statusCurrent}</span></div><dl><dt>${copy[currentLang].claimCeiling}</dt><dd>${t.ceiling}</dd><dt>${copy[currentLang].evidenceBasis}</dt><dd>${t.evidence}</dd><dt>${copy[currentLang].doesNotMean}</dt><dd>${t.counter}</dd><dt>${copy[currentLang].lineage}</dt><dd>${t.lineage}</dd></dl>`;
+  const semanticChips=[typeChip(c.type),...semanticAxes.map(axis=>semanticChip(axis,semanticValue(c,axis)))].join('');
+  detail.innerHTML=`<div class="claim-semantics">${semanticChips}</div><h3>${t.title}</h3><dl><dt class="claim-ceiling-label">${copy[currentLang].claimCeiling}</dt><dd class="claim-ceiling-value">${t.ceiling}</dd><dt>${copy[currentLang].evidenceBasis}</dt><dd>${t.evidence}</dd><dt>${copy[currentLang].doesNotMean}</dt><dd>${t.counter}</dd><dt>${copy[currentLang].lineage}</dt><dd>${t.lineage}</dd></dl>`;
 }
 function renderClaims(){
   list.innerHTML='';
   claims.forEach(c=>{
     const b=document.createElement('button');b.className='claim-button'+(c.id===activeClaimId?' active':'');b.dataset.id=c.id;
-    b.innerHTML=`<strong>${c[currentLang].title}</strong><small>${typeLabel(c.type)} · ${stateLabel(c.state)}</small>`;
+    b.innerHTML=`<strong>${c[currentLang].title}</strong><small>${semanticSummary(c)}</small>`;
     b.onclick=()=>renderClaim(c);list.appendChild(b);
   });
   renderClaim(claims.find(c=>c.id===activeClaimId)||claims[0]);
