@@ -1,0 +1,248 @@
+@import url("history-semantics.css");
+
+/* DRAFT-IV-READ-SEMANTICS-014 START
+   Align the three Read summary cards with the Evidence grammar.
+   These labels are different epistemic axes, not confidence levels.
+
+   Compatibility note:
+   the first card still carries the legacy axis-position / stillHeld hooks
+   in the current HTML. Presentation now interprets that state correctly
+   as LINEAGE / RETAINED; no new epistemic axis is introduced.
+*/
+
+.read-summary-card{
+  display:flex;
+  flex-direction:column;
+}
+
+.read-summary-semantics{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  min-height:54px;
+  margin-bottom:6px;
+}
+
+.read-summary-chip{
+  flex:0 1 auto;
+  min-width:132px;
+  min-height:48px;
+}
+
+/* Fallibility: retained across the current revision lineage.
+   RETAINED is lineage, not warrant/admission/confidence. */
+.read-summary-chip.axis-position{
+  border-inline-start-width:4px;
+  border-inline-start-color:var(--green);
+  border-radius:3px 10px 10px 3px;
+  background:rgba(255,255,255,.72);
+  color:var(--ink);
+}
+
+.read-summary-chip.axis-position .axis-label > span{
+  display:none !important;
+}
+
+.read-summary-chip.axis-position .axis-label::after{
+  content:"LINEAGE";
+}
+
+.rtl .read-summary-chip.axis-position .axis-label::after{
+  content:"שושלת";
+}
+
+.read-summary-chip.axis-position strong [data-i18n="stillHeld"]{
+  display:none;
+}
+
+.read-summary-chip.axis-position strong::after{
+  content:"RETAINED";
+  color:var(--green);
+}
+
+.rtl .read-summary-chip.axis-position strong::after{
+  content:"נשמר";
+}
+
+/* Reuse the Evidence grammar for established axes. */
+.read-summary-chip.axis-lineage{
+  border-inline-start-width:4px;
+  border-inline-start-color:var(--orange);
+  border-radius:3px 10px 10px 3px;
+}
+
+.read-summary-chip.axis-admission{
+  border-style:dashed;
+  border-width:2px;
+}
+
+.read-summary-chip.axis-validation{
+  border-style:double;
+  border-width:3px;
+}
+
+.read-summary-chip.axis-resolution{
+  border-style:dotted;
+  border-width:3px;
+}
+
+.read-summary-card-guild .read-summary-semantics{
+  align-items:flex-start;
+}
+
+.axis-copy-he{display:none}
+.rtl .axis-copy-en{display:none}
+.rtl .axis-copy-he{display:inline}
+
+.rtl .read-summary-chip.axis-lineage,
+.rtl .read-summary-chip.axis-position{
+  border-radius:10px 3px 3px 10px;
+}
+
+@media(max-width:960px){
+  .read-summary-semantics{
+    min-height:0;
+  }
+}
+
+@media(max-width:560px){
+  .read-summary-chip{
+    min-width:0;
+    width:100%;
+  }
+}
+
+/* DRAFT-IV-READ-SEMANTICS-014 END */
+
+/* DRAFT-IV-MOBILE-QA-018 START
+   Evidence-led mobile corrections from 390px visual QA.
+   Presentation only: no claim/source/model semantics changed.
+*/
+
+@media(max-width:560px){
+  /* Mobile landing: preserve both institutional marks without making
+     the marks consume most of the first viewport. */
+  .brand-marks{
+    row-gap:12px !important;
+    margin-bottom:10px !important;
+  }
+
+  .brand-mark-rotem{
+    width:min(48vw,190px) !important;
+  }
+
+  .brand-mark-shalom{
+    width:min(42vw,168px) !important;
+  }
+
+  /* Touch targets stay usable without forcing a second navigation row. */
+  .nav-btn,
+  .lang-btn{
+    min-height:40px;
+  }
+
+  /* READ — three distinct Guild axes remain distinct, but no longer
+     require three full-width vertical rows. */
+  .read-summary-card-guild .read-summary-semantics{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:8px;
+    width:100%;
+  }
+
+  .read-summary-card-guild .read-summary-chip{
+    width:auto !important;
+    min-width:0 !important;
+  }
+
+  .read-summary-card-guild .read-summary-chip.axis-resolution{
+    grid-column:1 / -1;
+  }
+
+  .card,
+  .panel{
+    padding:20px;
+  }
+
+  /* MODEL — 2x2 semantic matrix instead of four stacked status rows. */
+  #model .model-status-row{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:7px;
+  }
+
+  #model .model-status-row::before,
+  #model .model-status-row>.tag,
+  #model .model-status-row>.meta-pill{
+    min-height:58px;
+    padding:8px;
+  }
+
+  /* EVIDENCE — the claim selector becomes a horizontal rail.
+     The next card deliberately peeks into view to signal scrolling,
+     and the active claim detail follows immediately below. */
+  #evidence .evidence-layout{
+    gap:12px;
+  }
+
+  #evidence .claim-list{
+    display:grid;
+    grid-auto-flow:column;
+    grid-auto-columns:minmax(245px,78vw);
+    gap:8px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:0 0 8px;
+    scroll-snap-type:x proximity;
+    overscroll-behavior-inline:contain;
+    scrollbar-width:thin;
+  }
+
+  #evidence .claim-button{
+    min-height:86px;
+    scroll-snap-align:start;
+  }
+
+  #evidence .claim-detail{
+    padding:20px;
+  }
+
+  #evidence .claim-detail h3{
+    font-size:30px;
+  }
+
+  /* Keep the legend compact but readable. */
+  #evidence .legend-grid{
+    gap:7px;
+    margin:14px 0;
+  }
+
+  #evidence .legend-item{
+    padding:9px;
+  }
+
+  /* HISTORY — maintain the semantic timeline but avoid oversized labels. */
+  #history .time-item time{
+    width:min(100%,210px);
+    min-width:0;
+  }
+
+  #history .time-item{
+    padding-bottom:24px;
+  }
+}
+
+@media(max-width:360px){
+  #model .model-status-row{
+    grid-template-columns:1fr !important;
+  }
+
+  .read-summary-card-guild .read-summary-semantics{
+    grid-template-columns:1fr;
+  }
+
+  .read-summary-card-guild .read-summary-chip.axis-resolution{
+    grid-column:auto;
+  }
+}
+
+/* DRAFT-IV-MOBILE-QA-018 END */

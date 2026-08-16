@@ -1,0 +1,117 @@
+flowchart LR
+
+%% MULTI-AGENT CR EPISTEMOLOGY — V2.1 CANDIDATE
+%% Status: CANDIDATE MODEL — NOT CANON / NOT VALIDATED
+
+classDef actual fill:#fff7ef,stroke:#b86a19,stroke-width:2px,color:#4a2a10;
+classDef real fill:#f4f8ff,stroke:#245eaa,stroke-width:2px,color:#12345b;
+classDef empiric fill:#f5fff3,stroke:#4b8a35,stroke-width:2px,color:#21461b;
+classDef fringe fill:#fff3f3,stroke:#a32121,stroke-width:2px,color:#691515;
+classDef receipt fill:#eef6ff,stroke:#3571b8,stroke-width:1.5px,color:#173d68;
+classDef contract fill:#fff8e7,stroke:#a56b17,stroke-width:2px,color:#5a390b;
+classDef warning fill:#fff4e5,stroke:#bf5a16,stroke-width:2px,color:#6a2805;
+classDef note fill:#fafafa,stroke:#777,stroke-dasharray: 5 5,color:#333;
+
+subgraph ACTUAL["ACTUAL — Events / Occurrences / Interventions"]
+direction TB
+A_WORLD["Shared Actual World<br/>events · interactions · artifacts · consequences"]:::actual
+A_PROBE["Probe / Intervention<br/>action performed in the world"]:::actual
+A_RESPONSE["World Response<br/>may confirm · disconfirm · surprise · refract"]:::actual
+A_PROBE -->|"impact / effects"| A_WORLD
+A_WORLD -->|"new occurrence"| A_RESPONSE
+end
+
+subgraph REAL["REAL — Structures / Mechanisms / Causal Powers"]
+direction TB
+G["GUILD — Candidate Relational Structure / Mechanism<br/><br/>visibility · access · costs · roles<br/>artifacts & memory · norms & language"]:::real
+COND["Conditioning of Epistemic Process<br/><br/>shapes salience · framing · attention<br/>enables/constrains probes<br/>carries commitments<br/>may enhance OR dampen anomaly sensitivity"]:::real
+FRINGE["FRINGE — Anomaly-Sensitivity Function<br/><br/>internally carried<br/>externally allocatable<br/>cross-cutting across transitions<br/><br/>FUNCTION MAY BE ASSIGNED<br/>IDENTITY MUST NOT OWN THE FUNCTION"]:::fringe
+CONTRACT["Probe Contract Layer<br/><br/>purpose<br/>expected outcomes<br/>success / failure conditions<br/>risks · costs · responsibilities<br/>decision rules · rollback path"]:::contract
+subgraph RECEIPTS["Typed Reality Receipts — required by claim/probe type"]
+direction LR
+R_INV["Inventory Receipt<br/>what exists / dependencies"]:::receipt
+R_CTX["Context / Conditioning Receipt<br/>memory · framing · tools · visibility<br/>prior hypotheses · shared context"]:::receipt
+R_RUN["Runtime / Instrument Receipt<br/>what actually executed"]:::receipt
+R_EFF["Effect / Outcome Receipt<br/>what actually happened"]:::receipt
+R_COST["Cost / Pressure Receipt<br/>who bore cost / pressure / risk"]:::receipt
+end
+ADMISSION["GATE 3 — Typed Receipt Admission<br/><br/>required receipts locked BEFORE probe<br/>missing receipt ≠ negative finding<br/>missing required receipt → NOT_ADMISSIBLE<br/>receipt substitution = forbidden"]:::warning
+G --> COND
+COND --> FRINGE
+FRINGE --> CONTRACT
+CONTRACT --> R_INV
+CONTRACT --> R_CTX
+CONTRACT --> R_RUN
+CONTRACT --> R_EFF
+CONTRACT --> R_COST
+R_INV --> ADMISSION
+R_CTX --> ADMISSION
+R_RUN --> ADMISSION
+R_EFF --> ADMISSION
+R_COST --> ADMISSION
+end
+
+subgraph EMPIRIC["EMPIRIC — Experiences / Perspectives / Reasoning"]
+direction TB
+subgraph C1["Agent 1 — C₁"]
+direction TB
+C1_POS["Position / Conditioning Profile<br/>visibility · memory · tools · access<br/>action authority · cost exposure"]:::note
+C1_PFE["Personal Factual Experience₁"]:::empiric
+C1_F["Forecast₁"]:::empiric
+C1_R["Rationalisation₁"]:::empiric
+C1_H["Hypothesis₁"]:::empiric
+C1_C["Causality₁<br/>what should follow if hypothesis holds"]:::empiric
+C1_PI["Probe Intent₁"]:::empiric
+C1_POS -. conditions .-> C1_PFE
+C1_PFE --> C1_F
+C1_F --> C1_R
+C1_R --> C1_H
+C1_H --> C1_C
+C1_C --> C1_PI
+end
+subgraph C2["Agent 2 — C₂"]
+direction TB
+C2_POS["Position / Conditioning Profile<br/>visibility · memory · tools · access<br/>action authority · cost exposure"]:::note
+C2_PFE["Personal Factual Experience₂"]:::empiric
+C2_F["Forecast₂"]:::empiric
+C2_R["Rationalisation₂"]:::empiric
+C2_H["Hypothesis₂"]:::empiric
+C2_C["Causality₂<br/>what should follow if hypothesis holds"]:::empiric
+C2_PI["Probe Intent₂"]:::empiric
+C2_POS -. conditions .-> C2_PFE
+C2_PFE --> C2_F
+C2_F --> C2_R
+C2_R --> C2_H
+C2_H --> C2_C
+C2_C --> C2_PI
+end
+end
+
+A_WORLD -->|"becomes available through perception / instrumentation"| C1_PFE
+A_WORLD -->|"becomes available through perception / instrumentation"| C2_PFE
+G -. "conditions causal position" .-> C1_POS
+G -. "conditions causal position" .-> C2_POS
+COND -. "influences transitions" .-> C1_R
+COND -. "influences transitions" .-> C1_H
+COND -. "influences transitions" .-> C2_R
+COND -. "influences transitions" .-> C2_H
+C1_PI -->|"proposes probe"| CONTRACT
+C2_PI -->|"proposes probe"| CONTRACT
+CONTRACT -->|"authorized/scoped action only"| A_PROBE
+A_RESPONSE -->|"runtime / effect / context / cost traces"| RECEIPTS
+ADMISSION -->|"eligible evidence only"| C1_PFE
+ADMISSION -->|"eligible evidence only"| C2_PFE
+FRINGE -. anomaly .-> C1_PFE
+FRINGE -. anomaly .-> C1_R
+FRINGE -. anomaly .-> C1_H
+FRINGE -. anomaly .-> C1_PI
+FRINGE -. anomaly .-> C2_PFE
+FRINGE -. anomaly .-> C2_R
+FRINGE -. anomaly .-> C2_H
+FRINGE -. anomaly .-> C2_PI
+A_RESPONSE -. "world can interrupt shared model" .-> FRINGE
+
+RULES["CORE RULES<br/><br/>Guild ≠ Agent<br/>Artifact ≠ Knower<br/>Consensus ≠ Truth<br/>Receipt ≠ Reality<br/>Receipt = trace from reality<br/>Action succeeded ≠ Hypothesis confirmed<br/>No receipt ≠ negative result<br/>Empiric imagination ≠ Actual occurrence<br/>Role ≠ Identity<br/>Structural asymmetry ≠ epistemic privilege"]:::note
+ADMISSION -.-> RULES
+STATUS["STATUS<br/><br/>GUILD = CANDIDATE REAL-LEVEL STRUCTURE<br/>FRINGE = FUNCTION, NOT MONOPOLIZED IDENTITY<br/>TYPED RECEIPT ADMISSION = CANDIDATE GATE<br/>MODEL = NOT VALIDATED / NOT CANON"]:::note
+RULES -.-> STATUS

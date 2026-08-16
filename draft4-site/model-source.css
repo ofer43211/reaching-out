@@ -1,0 +1,154 @@
+.model-status-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:-6px 0 18px}.model-source-shell{border:1px solid var(--line);border-radius:20px;background:var(--paper);box-shadow:var(--shadow);overflow:hidden;margin-bottom:18px}.model-source-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-start;padding:20px 22px;border-bottom:1px solid var(--line)}.model-source-head p{margin:6px 0 0;color:var(--muted);max-width:760px}.source-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.source-link{display:inline-flex;align-items:center;padding:11px 16px;border:1px solid var(--line);border-radius:999px;text-decoration:none;color:var(--ink);font-weight:800;background:#fff}.model-source{margin:0;max-height:460px;overflow:auto;padding:20px 22px;background:#17231d;color:#edf4ee;font-size:12px;line-height:1.55;white-space:pre;tab-size:2}.secondary:disabled{opacity:.55;cursor:wait}@media(max-width:960px){.model-source-head{flex-direction:column}.source-actions{justify-content:flex-start}}@media(max-width:560px){.source-actions{width:100%}.source-actions>*{width:100%;justify-content:center}.model-source{font-size:11px}}
+
+/* DRAFT-IV-MODEL-SEMANTICS-015 START
+   Presentation-only semantic split for the V2.1 candidate model.
+   MODEL STATUS != VALIDATION != CANON STATUS != SOURCE PROVENANCE.
+   The owner-supplied .mmd source remains unchanged.
+*/
+
+.model-status-row{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  align-items:stretch;
+  margin:-6px 0 18px;
+}
+
+.model-status-row::before,
+.model-status-row>.tag,
+.model-status-row>.meta-pill{
+  min-width:0;
+  min-height:54px;
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(255,255,255,.72);
+  box-sizing:border-box;
+  letter-spacing:0;
+  text-transform:none;
+  font-size:11px;
+  font-weight:850;
+  line-height:1.25;
+}
+
+/* MODEL STATUS — candidate is a model-state, not validation or canon. */
+.model-status-row::before{
+  content:"MODEL STATUS\A◇ CANDIDATE";
+  display:flex;
+  white-space:pre-line;
+  flex-direction:column;
+  justify-content:center;
+  border:2px dashed currentColor;
+  color:var(--blue);
+}
+
+/* VALIDATION — retain existing translated value; change its grammar. */
+.model-status-row>.tag.open{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:3px double currentColor;
+  color:var(--red);
+}
+.model-status-row>.tag.open::before{
+  content:"VALIDATION";
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.08em;
+}
+.model-status-row>.tag.open::after{
+  content:"  ⊘";
+}
+
+/* CANON STATUS — square/neutral, explicitly not a revision state. */
+.model-status-row>.tag.revised{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid #89918b;
+  border-radius:3px;
+  box-shadow:inset 0 0 0 1px rgba(89,99,92,.12);
+  color:#59635c;
+}
+.model-status-row>.tag.revised::before{
+  content:"CANON STATUS";
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.08em;
+}
+.model-status-row>.tag.revised::after{
+  content:"  ∅";
+}
+
+/* SOURCE PROVENANCE — provenance is not candidacy.
+   The old translated text remains in the DOM, but visual presentation
+   removes CANDIDATE from the provenance axis because candidacy now has
+   its own model-status cell. */
+.model-status-row>.meta-pill{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid var(--line);
+  border-inline-start:4px solid var(--green2);
+  color:var(--green);
+  font-size:0;
+}
+.model-status-row>.meta-pill::before{
+  content:"SOURCE PROVENANCE";
+  display:block;
+  margin-bottom:4px;
+  color:var(--muted);
+  font-size:8px;
+  font-weight:850;
+  letter-spacing:.08em;
+}
+.model-status-row>.meta-pill::after{
+  content:"↳ OWNER-SUPPLIED SOURCE";
+  font-size:11px;
+  font-weight:850;
+  line-height:1.25;
+}
+
+/* Cross-view consistency: an in-model candidate uses the same compound
+   token as candidacy elsewhere — diamond + dashed frame + candidate text. */
+.dimension.real .node.accent .mini{
+  border-style:dashed;
+  border-width:2px;
+  border-radius:10px;
+}
+.dimension.real .node.accent .mini::before{
+  content:"◇ ";
+}
+
+.rtl .model-status-row::before{
+  content:"מצב המודל\A◇ מועמד";
+}
+.rtl .model-status-row>.tag.open::before{
+  content:"אימות";
+  letter-spacing:.02em;
+}
+.rtl .model-status-row>.tag.revised::before{
+  content:"מצב קאנון";
+  letter-spacing:.02em;
+}
+.rtl .model-status-row>.meta-pill::before{
+  content:"מקור / PROVENANCE";
+  letter-spacing:.02em;
+}
+.rtl .model-status-row>.meta-pill::after{
+  content:"↳ מקור שסופק בידי הבעלים";
+}
+
+@media(max-width:960px){
+  .model-status-row{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .model-status-row{grid-template-columns:1fr}
+}
+
+/* DRAFT-IV-MODEL-SEMANTICS-015 END */

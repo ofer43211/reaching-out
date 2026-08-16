@@ -1,0 +1,560 @@
+/* ==========================================================
+   Draft IV — Header / Logo / Navigation Lock
+
+   HIERARCHY:
+   LOGOS
+   META
+   NAV
+   DIVIDER
+   HERO
+
+   Desktop:
+   KELIM SHLUVIM = LEFT
+   ROTEM         = RIGHT
+
+   Alignment principle:
+   WORDMARK <-> WORDMARK
+   SAME PERCEIVED MASS
+   OPTICAL ALIGNMENT, NOT IMAGE-BOX ALIGNMENT
+   ========================================================== */
+
+
+/* ---------- LOGO STAGE ---------- */
+
+.brand-marks {
+  width: min(calc(100% - 48px), 980px) !important;
+  margin: clamp(38px, 5vw, 74px) auto 18px !important;
+  padding: 0 !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  grid-template-areas: "shalom rotem" !important;
+  column-gap: clamp(88px, 10vw, 170px) !important;
+
+  align-items: end !important;
+
+  direction: ltr !important;
+  border: 0 !important;
+
+  overflow: visible !important;
+}
+
+
+/* Old shared image-box rules must not control alignment. */
+
+.brand-mark {
+  display: block !important;
+
+  height: auto !important;
+  max-height: none !important;
+  max-width: none !important;
+
+  object-fit: contain !important;
+  object-position: center bottom !important;
+
+  background: transparent !important;
+}
+
+
+/* LEFT — כלים שלובים */
+
+.brand-mark-shalom {
+  grid-area: shalom !important;
+
+  justify-self: start !important;
+  align-self: end !important;
+
+  width: clamp(300px, 25vw, 370px) !important;
+
+  transform: none !important;
+  mix-blend-mode: normal !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* RIGHT — רותם */
+
+.brand-mark-rotem {
+  grid-area: rotem !important;
+
+  justify-self: end !important;
+  align-self: end !important;
+
+  width: clamp(290px, 23vw, 340px) !important;
+
+  /* No transform here:
+     prevents the descriptor from being pushed/cropped. */
+  transform: none !important;
+
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+
+/* ---------- META ROW ---------- */
+
+.draft4-meta-row {
+  width: min(calc(100% - 48px), 980px);
+
+  margin: 2px auto 14px;
+  padding: 8px 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: clamp(14px, 2.2vw, 30px);
+
+  direction: ltr;
+
+  position: relative;
+  z-index: 2;
+}
+
+
+/* Normalize migrated header pieces without destroying
+   the language-toggle button styling. */
+
+.draft4-meta-row > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+
+/* ---------- NAV ROW ---------- */
+
+.draft4-nav-row {
+  width: min(calc(100% - 48px), 980px);
+
+  margin: 0 auto clamp(38px, 4vw, 54px);
+  padding: 8px 0 22px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-bottom: 1px solid var(--line);
+}
+
+
+.draft4-main-nav {
+  margin: 0 auto !important;
+}
+
+
+/* The old divider no longer belongs to the logo row. */
+
+.brand-marks::before,
+.brand-marks::after {
+  display: none !important;
+}
+
+
+/* Empty original header shell should not leave a blank band. */
+
+.draft4-vacated-header {
+  height: 0 !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  overflow: hidden !important;
+}
+
+
+/* ---------- HERO ---------- */
+
+.hero {
+  margin-top: 0 !important;
+}
+
+
+/* ==========================================================
+   MOBILE
+   ========================================================== */
+
+@media (max-width: 720px) {
+
+  .brand-marks {
+    width: calc(100% - 28px) !important;
+
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "rotem"
+      "shalom" !important;
+
+    row-gap: 24px !important;
+    column-gap: 0 !important;
+
+    margin-top: 28px !important;
+
+    align-items: center !important;
+  }
+
+  .brand-mark-rotem {
+    justify-self: center !important;
+    width: min(82vw, 330px) !important;
+  }
+
+  .brand-mark-shalom {
+    justify-self: center !important;
+    width: min(84vw, 350px) !important;
+  }
+
+  .draft4-meta-row {
+    width: calc(100% - 28px);
+
+    gap: 10px 16px;
+
+    margin-top: 4px;
+    margin-bottom: 10px;
+  }
+
+  .draft4-nav-row {
+    width: calc(100% - 28px);
+
+    padding-bottom: 18px;
+    margin-bottom: 34px;
+  }
+}
+
+/* ROTEM-INTERIM-005 START
+   Owner-selected interim artwork.
+   Presentation only.
+*/
+
+.brand-mark-rotem {
+  width: clamp(390px, 27vw, 455px) !important;
+  height: auto !important;
+
+  max-width: none !important;
+  max-height: none !important;
+
+  object-fit: contain !important;
+  background: transparent !important;
+
+  /* Blend the warm raster canvas into Draft IV temporarily. */
+  mix-blend-mode: multiply !important;
+}
+
+@media (max-width: 720px) {
+  .brand-mark-rotem {
+    width: min(94vw, 440px) !important;
+  }
+}
+
+/* ROTEM-INTERIM-005 END */
+
+/* ROTEM-BACKGROUND-FIXED-006 START
+   New owner-provided RoTEM artwork already contains its tagline
+   and has a corrected background.
+*/
+
+.brand-mark-rotem {
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+}
+
+/* Tagline is already baked into the selected artwork. */
+.brand-lockup-rotem .rotem-tagline {
+  display: none !important;
+}
+
+/* ROTEM-BACKGROUND-FIXED-006 END */
+
+/* ROTEM-TRANSPARENT-FINAL-008 START
+   True transparent PNG selected for RoTEM.
+   Preserve existing sizing/layout; remove raster blending workaround.
+*/
+.brand-mark-rotem {
+  mix-blend-mode: normal !important;
+  background: transparent !important;
+}
+
+.brand-lockup-rotem .rotem-tagline {
+  display: none !important;
+}
+/* ROTEM-TRANSPARENT-FINAL-008 END */
+
+/* DRAFT-IV-MICRO-POLISH-009 START
+   Final visual micro-adjustment:
+   - slightly smaller institutional marks
+   - less air above brand stage
+   - smaller hero title
+*/
+
+/* Pull the whole brand stage upward. */
+.hero {
+  padding-top: clamp(28px, 3vw, 48px) !important;
+}
+
+.brand-marks {
+  margin-top: 0 !important;
+  margin-bottom: 14px !important;
+}
+
+/* About 10% smaller than current visual size. */
+.brand-mark-shalom {
+  width: clamp(270px, 22vw, 335px) !important;
+}
+
+.brand-mark-rotem {
+  width: clamp(350px, 24vw, 410px) !important;
+}
+
+/* "תמיד בבנייה." — still dominant, but no longer oversized. */
+.hero h1 {
+  font-size: clamp(3rem, 4.2vw, 4.4rem) !important;
+  line-height: 1.02 !important;
+}
+
+/* Mobile remains compact. */
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 24px !important;
+  }
+
+  .brand-mark-rotem {
+    width: min(84vw, 380px) !important;
+  }
+
+  .brand-mark-shalom {
+    width: min(78vw, 315px) !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.5rem, 11vw, 3.4rem) !important;
+  }
+}
+
+/* DRAFT-IV-MICRO-POLISH-009 END */
+
+/* DRAFT-IV-TYPE-SCALE-010 START
+   Editorial type hierarchy — Hebrew-first.
+   No content/layout/logo changes.
+*/
+
+/* Small conceptual labels must remain visibly readable. */
+.eyebrow {
+  font-size: 16px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.02em !important;
+  margin-bottom: 12px !important;
+}
+
+/* Main current-state title: important, not billboard-sized. */
+.hero h1 {
+  font-size: clamp(38px, 3.2vw, 52px) !important;
+  line-height: 1.08 !important;
+  max-width: 900px !important;
+}
+
+/* Opening thesis paragraph. */
+.lead {
+  font-size: clamp(20px, 1.65vw, 25px) !important;
+  line-height: 1.55 !important;
+  max-width: 920px !important;
+  margin-top: 24px !important;
+}
+
+/* Primary hero navigation / actions. */
+.hero-actions {
+  margin-top: 24px !important;
+  gap: 10px !important;
+}
+
+.hero-actions .primary,
+.hero-actions .secondary {
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  padding: 10px 15px !important;
+}
+
+/* Epistemic ceiling / claim-hygiene statement. */
+.claim-ceiling {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  margin-top: 32px !important;
+}
+
+/* Section headings:
+   "Draft IV הוא מצב, לא אנדרטה." etc. */
+.section-head h2 {
+  font-size: clamp(32px, 2.8vw, 46px) !important;
+  line-height: 1.12 !important;
+  margin-bottom: 14px !important;
+  max-width: 900px !important;
+}
+
+/* Explanatory paragraph immediately under section heading. */
+.section-head > p:last-child {
+  font-size: 18px !important;
+  line-height: 1.65 !important;
+  max-width: 860px !important;
+}
+
+/* Keep section spacing editorial rather than monumental. */
+.section-head {
+  padding-top: 30px !important;
+  padding-bottom: 24px !important;
+}
+
+/* Hebrew optical tuning. */
+.rtl .hero h1,
+.rtl .section-head h2 {
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+}
+
+@media (max-width: 720px) {
+  .eyebrow {
+    font-size: 14px !important;
+  }
+
+  .hero h1 {
+    font-size: clamp(34px, 10vw, 44px) !important;
+  }
+
+  .lead {
+    font-size: 19px !important;
+  }
+
+  .section-head h2 {
+    font-size: clamp(29px, 8.5vw, 38px) !important;
+  }
+
+  .section-head > p:last-child {
+    font-size: 17px !important;
+  }
+}
+
+/* DRAFT-IV-TYPE-SCALE-010 END */
+
+/* DRAFT-IV-FINAL-HEADER-011 START
+   CSS-only final logo scaling and placement.
+   Existing assets and hero typography remain unchanged.
+*/
+
+/* Tighten the remaining top air without touching the PNG again. */
+.hero {
+  padding-top: 12px !important;
+}
+
+.brand-marks {
+  margin-top: 0 !important;
+  direction: ltr !important;
+}
+
+/* Lockups are the grid items: enforce physical desktop sides. */
+.brand-lockup-shalom {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  justify-self: start !important;
+  align-self: end !important;
+}
+
+.brand-lockup-rotem {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  justify-self: end !important;
+  align-self: end !important;
+}
+
+/* Approximately 30% smaller than the current rendered sizes. */
+.brand-mark-shalom {
+  width: clamp(189px, 15.4vw, 235px) !important;
+}
+
+.brand-mark-rotem {
+  width: clamp(245px, 16.8vw, 287px) !important;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding-top: 12px !important;
+  }
+
+  .brand-lockup-rotem {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    justify-self: center !important;
+  }
+
+  .brand-lockup-shalom {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: center !important;
+  }
+
+  .brand-mark-rotem {
+    width: min(59vw, 266px) !important;
+  }
+
+  .brand-mark-shalom {
+    width: min(55vw, 221px) !important;
+  }
+}
+
+/* DRAFT-IV-FINAL-HEADER-011 END */
+
+/* DRAFT-IV-COMPACT-WORKSPACE-012 START
+   Read keeps the full landing composition.
+   Model / Evidence / History collapse the landing-only hero material
+   so the active workspace becomes visible immediately after navigation.
+*/
+
+body:has(.nav-btn.active:not([data-view="read"])) .hero {
+  padding-top: 6px !important;
+  padding-bottom: 0 !important;
+  max-width: none !important;
+}
+
+/* Keep META + NAV as the compact workspace header; hide landing-only material. */
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .brand-marks,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .eyebrow,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > h1,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .lead,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .hero-actions,
+body:has(.nav-btn.active:not([data-view="read"])) .hero > .claim-ceiling {
+  display: none !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .draft4-meta-row {
+  margin: 0 auto 4px !important;
+  padding: 4px 0 !important;
+  min-height: 0 !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .draft4-nav-row {
+  margin: 0 auto 8px !important;
+  padding: 4px 0 10px !important;
+}
+
+body:has(.nav-btn.active:not([data-view="read"])) .view.active > .section-head {
+  padding-top: 12px !important;
+  padding-bottom: 14px !important;
+}
+
+@media (max-width: 720px) {
+  body:has(.nav-btn.active:not([data-view="read"])) .hero {
+    padding-top: 4px !important;
+  }
+
+  body:has(.nav-btn.active:not([data-view="read"])) .draft4-meta-row {
+    margin-bottom: 2px !important;
+  }
+
+  body:has(.nav-btn.active:not([data-view="read"])) .draft4-nav-row {
+    margin-bottom: 6px !important;
+    padding-bottom: 8px !important;
+  }
+}
+
+/* DRAFT-IV-COMPACT-WORKSPACE-012 END */
