@@ -16,13 +16,29 @@
     document.head.appendChild(link);
   }
 
+  function ensureAccessibilityPolish() {
+    if (!document.querySelector('link[data-draft4-accessibility]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'accessibility-polish.css';
+      link.dataset.draft4Accessibility = 'true';
+      document.head.appendChild(link);
+    }
+
+    if (!document.querySelector('script[data-draft4-accessibility]')) {
+      const script = document.createElement('script');
+      script.src = 'accessibility-polish.js';
+      script.defer = true;
+      script.dataset.draft4Accessibility = 'true';
+      document.head.appendChild(script);
+    }
+  }
+
   function smallestMatching(predicate) {
     const candidates = all().filter((el) => {
       const text = norm(el.textContent);
       if (!predicate(text, el)) return false;
 
-      // Prefer the deepest/smallest element that still represents
-      // the full requested UI unit.
       const childAlsoMatches = [...el.children].some((child) =>
         predicate(norm(child.textContent), child)
       );
@@ -81,6 +97,7 @@
 
   function polishHeader() {
     ensureHistorySemantics();
+    ensureAccessibilityPolish();
 
     const marks = document.querySelector('.brand-marks');
     if (!marks) return;
@@ -88,7 +105,6 @@
     const shalom = marks.querySelector('.brand-mark-shalom');
     const rotem  = marks.querySelector('.brand-mark-rotem');
 
-    // Explicit semantic classes — CSS controls actual left/right placement.
     if (shalom) shalom.dataset.brandPosition = 'left';
     if (rotem)  rotem.dataset.brandPosition = 'right';
 
@@ -115,9 +131,6 @@
 
     const originalNodes = [year, language, title, nav].filter(Boolean);
 
-    // ---------------------------
-    // META ROW immediately after logos
-    // ---------------------------
     let metaRow = document.querySelector('.draft4-meta-row');
 
     if (!metaRow) {
@@ -135,9 +148,6 @@
       }
     });
 
-    // ---------------------------
-    // NAV immediately after META
-    // ---------------------------
     let navRow = document.querySelector('.draft4-nav-row');
 
     if (!navRow) {
@@ -162,8 +172,6 @@
     polishHeader();
   }
 
-  // Bilingual UI may redraw/reconfigure some header content.
-  // Reconcile once more after initial app hydration.
   setTimeout(polishHeader, 120);
   setTimeout(polishHeader, 600);
 })();
